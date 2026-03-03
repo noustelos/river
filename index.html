@@ -73,20 +73,20 @@ header {
   
   /* Start: Invisible & Smooth transition */
   opacity: 0;
-  transform: translateY(15px); /* Μικρότερη μετατόπιση για λιγότερο "jump" */
-  transition: opacity 3.5s ease-out, transform 3.5s ease-out; /* Πολύ αργό fade in */
+  filter: blur(15px); /* Ξεκινάει πολύ θολό */
+  transform: scale(1);transition: opacity 4.5s ease-in-out, filter 4s ease-in-out;
+
 }
 
 .glass-panel.active {
   opacity: 1;
-  transform: translateY(0);
+  filter: blur(0px);
 }
 
 .glass-panel.exit {
   opacity: 0 !important;
-  transform: translateY(-10px);
-  transition: opacity 2s ease-in;
-  pointer-events: none;
+  filter: blur(5px);
+  transition: opacity 2.5s ease-in, filter 2.5s ease-in;
 }
 
 .glass-panel h1 {
