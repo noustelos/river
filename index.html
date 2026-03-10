@@ -87,7 +87,7 @@ header {
 .glass-panel.exit {
   opacity: 0 !important;
   filter: blur(5px);
-  transition: opacity 2.5s ease-in, filter 2.5s ease-in;
+  transition: opacity 3s ease-in, filter 3s ease-in;
 }
 
 .glass-panel h1 {
@@ -111,7 +111,7 @@ header {
    FOOTER WITH SCRIM SHADOW
 =========================== */
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   padding: 50px 30px 30px; /* Περισσότερο padding πάνω για τη σκιά */
@@ -189,6 +189,47 @@ footer {
     font-size: 0.65rem;
   }
 }
+
+/* ===========================
+   VIDEO SECTION
+=========================== */
+.video-section {
+  position: relative;
+  min-height: 100vh;
+  background: var(--deep-night);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--mist);
+  padding-top: 80px;
+  padding-bottom: 80px;
+  margin-bottom: 200px;
+}
+
+.video-section iframe {
+  width: 90%;
+  max-width: 1120px;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+}
+
+.video-section .glass-panel {
+  margin-top: 40px;
+}
+
+.video-section .glass-panel p {
+  color: var(--mist);
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.glass-panel p + p {
+  margin-top: 10px;
+}
 </style>
 </head>
 
@@ -200,50 +241,52 @@ footer {
 
 <section class="hero-slideshow">
   <div class="gallery-track">
-    <img src="assets/photos/gallery_1/image_1.webp" alt="">
-    <img src="assets/photos/gallery_1/image_2.webp" alt="">
-    <img src="assets/photos/gallery_1/image_3.webp" alt="">
-    <img src="assets/photos/gallery_1/image_4.webp" alt="">
-    <img src="assets/photos/gallery_1/image_5.webp" alt="">
-    <img src="assets/photos/gallery_1/image_6.webp" alt="">
-    <img src="assets/photos/gallery_1/image_7.webp" alt="">
-    <img src="assets/photos/gallery_1/image_8.webp" alt="">
-    <img src="assets/photos/gallery_1/image_9.webp" alt="">
-    <img src="assets/photos/gallery_1/image_10.webp" alt="">
+    <img src="assets/photos/gallery_1/image_1.webp" alt="Vouraikos Gorge, slide 1">
+    <img src="assets/photos/gallery_1/image_2.webp" alt="Vouraikos Gorge, slide 2">
+    <img src="assets/photos/gallery_1/image_3.webp" alt="Vouraikos Gorge, slide 3">
+    <img src="assets/photos/gallery_1/image_4.webp" alt="Vouraikos Gorge, slide 4">
+    <img src="assets/photos/gallery_1/image_5.webp" alt="Vouraikos Gorge, slide 5">
+    <img src="assets/photos/gallery_1/image_6.webp" alt="Vouraikos Gorge, slide 6">
+    <img src="assets/photos/gallery_1/image_7.webp" alt="Vouraikos Gorge, slide 7">
+    <img src="assets/photos/gallery_1/image_8.webp" alt="Vouraikos Gorge, slide 8">
+    <img src="assets/photos/gallery_1/image_9.webp" alt="Vouraikos Gorge, slide 9">
+    <img src="assets/photos/gallery_1/image_10.webp" alt="Vouraikos Gorge, slide 10">
   </div>
 
   <div class="glass-panel" id="mainPanel">
     <h1>Between Stone<br>and Silence</h1>
-    <p>Chelmos-Vouraikos UNESCO Global Geopark</p> <br>
-  <p>Discover Diakopto</p>
+    <p>Chelmos-Vouraikos UNESCO Global Geopark</p>
+    <p>Discover Diakopto</p>
   </div>
 </section>
 
-<section class="video-section" style="position: relative; height: 100vh; background: var(--deep-night); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--mist); margin-bottom: 200px;">
-  <iframe width="1120" height="630" src="https://www.youtube.com/embed/J3h8kkOAtIk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <div class="glass-panel active" style="margin-top: 40px;">
-    <p>According to the greek myth, Vouraikos gorge was created by Hercules who opened it up to reach his beloved Voura who lived by the sea.<br><br> Vouraikos gorge has a length of about 20 km. In the gorge the river passes along dense vegetation and steep cliffs, waterfalls and caves.<br><br>The Diakofto–Kalavryta Railway passes through the Vouraikos gorge.</p>
+<section class="video-section">
+  <iframe width="1120" height="630" src="https://www.youtube.com/embed/J3h8kkOAtIk" title="Vouraikos Gorge – Chelmos UNESCO Global Geopark" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  <div class="glass-panel active">
+    <p>According to the Greek myth, Vouraikos gorge was created by Hercules who opened it up to reach his beloved Voura who lived by the sea.</p>
+    <p>Vouraikos gorge has a length of about 20 km. In the gorge the river passes along dense vegetation and steep cliffs, waterfalls and caves.</p>
+    <p>The Diakofto–Kalavryta Railway passes through the Vouraikos gorge.</p>
   </div>
 </section>
 
 <section class="hero-slideshow">
   <div class="gallery-track">
-    <img src="assets/photos/gallery_1/image_1.webp" alt="">
-    <img src="assets/photos/gallery_1/image_2.webp" alt="">
-    <img src="assets/photos/gallery_1/image_3.webp" alt="">
-    <img src="assets/photos/gallery_1/image_4.webp" alt="">
-    <img src="assets/photos/gallery_1/image_5.webp" alt="">
-    <img src="assets/photos/gallery_1/image_6.webp" alt="">
-    <img src="assets/photos/gallery_1/image_7.webp" alt="">
-    <img src="assets/photos/gallery_1/image_8.webp" alt="">
-    <img src="assets/photos/gallery_1/image_9.webp" alt="">
-    <img src="assets/photos/gallery_1/image_10.webp" alt="">
+    <img src="assets/photos/gallery_1/image_1.webp" alt="Vouraikos Gorge, slide 1" loading="lazy">
+    <img src="assets/photos/gallery_1/image_2.webp" alt="Vouraikos Gorge, slide 2" loading="lazy">
+    <img src="assets/photos/gallery_1/image_3.webp" alt="Vouraikos Gorge, slide 3" loading="lazy">
+    <img src="assets/photos/gallery_1/image_4.webp" alt="Vouraikos Gorge, slide 4" loading="lazy">
+    <img src="assets/photos/gallery_1/image_5.webp" alt="Vouraikos Gorge, slide 5" loading="lazy">
+    <img src="assets/photos/gallery_1/image_6.webp" alt="Vouraikos Gorge, slide 6" loading="lazy">
+    <img src="assets/photos/gallery_1/image_7.webp" alt="Vouraikos Gorge, slide 7" loading="lazy">
+    <img src="assets/photos/gallery_1/image_8.webp" alt="Vouraikos Gorge, slide 8" loading="lazy">
+    <img src="assets/photos/gallery_1/image_9.webp" alt="Vouraikos Gorge, slide 9" loading="lazy">
+    <img src="assets/photos/gallery_1/image_10.webp" alt="Vouraikos Gorge, slide 10" loading="lazy">
   </div>
 
   <div class="glass-panel" id="secondPanel">
     <h1>Between Stone<br>and Silence</h1>
-    <p>Chelmos-Vouraikos UNESCO Global Geopark</p> <br>
-  <p>Discover Diakopto</p>
+    <p>Chelmos-Vouraikos UNESCO Global Geopark</p>
+    <p>Discover Diakopto</p>
   </div>
 </section>
 

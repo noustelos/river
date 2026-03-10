@@ -1,25 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const panel = document.getElementById("mainPanel");
+  function animatePanel(panel) {
+    panel.classList.remove("active", "exit");
+    // Εμφάνιση (Slow Fade In)
+    setTimeout(() => panel.classList.add("active"), 500);
+    // Εξαφάνιση (Fade Out)
+    setTimeout(() => panel.classList.add("exit"), 12000);
+  }
 
-  // Εμφάνιση (Slow Fade In)
-  setTimeout(() => {
-    panel.classList.add("active");
-  }, 500);
+  // Πρώτο panel — εκκίνηση άμεσα
+  animatePanel(document.getElementById("mainPanel"));
 
-  // Εξαφάνιση (Fade Out)
-  setTimeout(() => {
-    panel.classList.add("exit");
-  }, 6000); // Αύξησα λίγο τον χρόνο για να προλάβει ο χρήστης να απολαύσει το αργό εφέ
-
+  // Δεύτερο panel — εκκίνηση μόνο όταν φανεί στην οθόνη
   const secondPanel = document.getElementById("secondPanel");
-
-  // Εμφάνιση (Slow Fade In)
-  setTimeout(() => {
-    secondPanel.classList.add("active");
-  }, 500);
-
-  // Εξαφάνιση (Fade Out)
-  setTimeout(() => {
-    secondPanel.classList.add("exit");
-  }, 6000);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        animatePanel(secondPanel);
+      }
+    });
+  }, { threshold: 0.3 });
+  observer.observe(secondPanel);
 });
