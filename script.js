@@ -1,14 +1,21 @@
+function setLang(lang) {
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll("[lang]").forEach((element) => {
+    element.style.display = element.getAttribute("lang") === lang ? "" : "none";
+  });
+
+  document.querySelectorAll(".lang-switcher button").forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.lang === lang);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  function animatePanel(panel) {
-    panel.classList.remove("active", "exit");
-    setTimeout(() => panel.classList.add("active"), 500);
-    setTimeout(() => panel.classList.add("exit"), 12000);
-  }
+  document.querySelectorAll(".lang-switcher button").forEach((button) => {
+    button.addEventListener("click", () => {
+      setLang(button.dataset.lang);
+    });
+  });
 
-  // Πρώτο panel — εκκίνηση άμεσα
-  animatePanel(document.getElementById("mainPanel"));
-
-  // Το δεύτερο panel να είναι πάντα ορατό
-  const secondPanel = document.getElementById("secondPanel");
-  secondPanel.classList.add("active");
+  setLang("el");
 });

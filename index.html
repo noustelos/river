@@ -4,123 +4,274 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Φαράγγι Βουραϊκού | Παγκόσμιο Γεωπάρκο UNESCO | Vouraikos Gorge | UNESCO Global Geopark</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-  <div class="logo">
-    <a href="#home">
-      <span lang="el">ΒΟΥΡΑΪΚΟΣ</span>
-      <span lang="en">VOURAIKOS</span>
-    </a>
-  </div>
-  <nav>
-    <ul>
-      <li><a href="#gorge"><span lang="el">Το Φαράγγι</span><span lang="en">The Gorge</span></a></li>
-      <li><a href="#odontotos"><span lang="el">Ο Οδοντωτός</span><span lang="en">The Train</span></a></li>
-      <li><a href="#geopark"><span lang="el">Γεωπάρκο UNESCO</span><span lang="en">UNESCO Geopark</span></a></li>
-    </ul>
-  </nav>
-  <div class="lang-switcher">
-    <button onclick="setLang('el')">ΕΛ</button>
-    <span>/</span>
-    <button onclick="setLang('en')">EN</button>
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo">
+      <a href="#home">
+        <span class="logo-accent" lang="el">ΒΟΥΡΑΪΚΟΣ</span>
+        <span lang="en">VOURAIKOS</span>
+        <span class="logo-subtitle">UNESCO Global Geopark</span>
+      </a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#gorge"><span lang="el">Το Φαράγγι</span><span lang="en">The Gorge</span></a></li>
+        <li><a href="#odontotos"><span lang="el">Ο Οδοντωτός</span><span lang="en">The Railway</span></a></li>
+        <li><a href="#geopark"><span lang="el">Γεωπάρκο</span><span lang="en">Geopark</span></a></li>
+        <li><a href="#gallery"><span lang="el">Εικόνες</span><span lang="en">Gallery</span></a></li>
+      </ul>
+    </nav>
+    <div class="lang-switcher" aria-label="Language switcher">
+      <button type="button" data-lang="el">ΕΛ</button>
+      <span>/</span>
+      <button type="button" data-lang="en">EN</button>
+    </div>
   </div>
 </header>
 
 <main>
-  <section id="home" class="hero-slideshow">
-    <div class="gallery-track">
-      <img src="assets/photos/gallery_1/image_1.webp" alt="Φαράγγι Βουραϊκού, διαφάνεια 1 | Vouraikos Gorge, slide 1">
-      <img src="assets/photos/gallery_1/image_2.webp" alt="Φαράγγι Βουραϊκού, διαφάνεια 2 | Vouraikos Gorge, slide 2">
-      <img src="assets/photos/gallery_1/image_3.webp" alt="Φαράγγι Βουραϊκού, διαφάνεια 3 | Vouraikos Gorge, slide 3">
-      <img src="assets/photos/gallery_1/image_4.webp" alt="Φαράγγι Βουραϊκού, διαφάνεια 4 | Vouraikos Gorge, slide 4">
-      <img src="assets/photos/gallery_1/image_5.webp" alt="Φαράγγι Βουραϊκού, διαφάνεια 5 | Vouraikos Gorge, slide 5">
-      <img src="assets/photos/gallery_1/image_6.webp" alt="Φαράγγι Βουραϊκού, διαφάνεια 6 | Vouraikos Gorge, slide 6">
-      <img src="assets/photos/gallery_1/image_7.webp" alt="Φαράγγι Βουραϊκού, διαφάνεια 7 | Vouraikos Gorge, slide 7">
-      <img src="assets/photos/gallery_1/image_8.webp" alt="Φαράγγι Βουραϊκού, διαφάνεια 8 | Vouraikos Gorge, slide 8">
-      <img src="assets/photos/gallery_1/image_9.webp" alt="Φαράγγι Βουραϊκού, διαφάνεια 9 | Vouraikos Gorge, slide 9">
-      <img src="assets/photos/gallery_1/image_10.webp" alt="Φαράγγι Βουραϊκού, διαφάνεια 10 | Vouraikos Gorge, slide 10">
+  <section id="home" class="hero">
+    <div class="gallery-track" aria-hidden="true">
+      <img src="assets/photos/gallery_1/image_1.webp" alt="">
+      <img src="assets/photos/gallery_1/image_5.webp" alt="">
+      <img src="assets/photos/gallery_1/image_8.webp" alt="">
+      <img src="assets/photos/gallery_1/image_10.webp" alt="">
     </div>
-
-    <div class="glass-panel" id="mainPanel">
-      <h1><span lang="el">Ανάμεσα στην Πέτρα<br>και τη Σιωπή</span><br><span lang="en">Between Stone<br>and Silence</span></h1>
-      <p><span lang="el">Παγκόσμιο Γεωπάρκο UNESCO Χελμού-Βουραϊκού</span><br><span lang="en">Chelmos-Vouraikos UNESCO Global Geopark</span></p>
-    </div>
-  </section>
-
-  <section id="gorge" class="video-section">
-    <iframe width="1120" height="630" src="https://www.youtube.com/embed/J3h8kkOAtIk" title="Vouraikos Gorge – Chelmos UNESCO Global Geopark" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-    <div class="glass-panel" id="secondPanel">
-       <p><span lang="el">Σύμφωνα με τον ελληνικό μύθο, το φαράγγι του Βουραϊκού δημιουργήθηκε από τον Ηρακλή, ο οποίος το άνοιξε για να φτάσει στην αγαπημένη του Βούρα που ζούσε στη θάλασσα.</span><br><span lang="en">According to the Greek myth, Vouraikos gorge was created by Hercules who opened it up to reach his beloved Voura who lived by the sea.</span></p>
-      <p><span lang="el">Το φαράγγι του Βουραϊκού έχει μήκος περίπου 20 χλμ. Στο φαράγγι ο ποταμός διασχίζει πυκνή βλάστηση και απόκρημνα βράχια, καταρράκτες και σπηλιές.</span><br><span lang="en">Vouraikos gorge has a length of about 20 km. In the gorge the river passes along dense vegetation and steep cliffs, waterfalls and caves.</span></p>
-    </div>
-  </section>
-
-  <section id="odontotos" class="content-section">
-    <div class="glass-panel">
-      <h2><span lang="el">Ο Οδοντωτός</span><span lang="en">The Rack Railway</span></h2>
-      <p><span lang="el">Η σιδηροδρομική γραμμή Διακοπτού–Καλαβρύτων, γνωστή ως "Οδοντωτός", διασχίζει το φαράγγι του Βουραϊκού. Είναι μια από τις πιο θεαματικές σιδηροδρομικές διαδρομές στην Ευρώπη.</span><br><span lang="en">The Diakofto–Kalavryta railway, known as the "Odontotos", crosses the Vouraikos gorge. It is one of the most spectacular railway routes in Europe.</span></p>
-    </div>
-  </section>
-
-  <section id="geopark" class="content-section">
-    <div class="glass-panel">
-      <h2><span lang="el">Γεωπάρκο UNESCO</span><span lang="en">UNESCO Geopark</span></h2>
-      <p><span lang="el">Το Γεωπάρκο Χελμού-Βουραϊκού είναι μέλος του Δικτύου Παγκόσμιων Γεωπάρκων της UNESCO. Η περιοχή προστατεύεται για τη μοναδική γεωλογική και πολιτιστική κληρονομιά της.</span><br><span lang="en">The Helmos-Vouraikos Geopark is a member of UNESCO's Global Geoparks Network. The area is protected for its unique geological and cultural heritage.</span></p>
-    </div>
-  </section>
-
-    <!-- ΝΕΟ SECTION: ΦΥΣΗ -->
-    <section id="nature" class="content-section">
-      <div class="glass-panel">
-        <h2><span lang="el">Η Φύση</span><span lang="en">Nature</span></h2>
-        <div class="placeholder-image" style="width:100%;height:220px;background:#222;border-radius:12px;margin-bottom:18px;display:flex;align-items:center;justify-content:center;color:#888;font-size:1.2rem;">[Placeholder Εικόνας]</div>
-        <p><span lang="el">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur.</span><br><span lang="en">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur.</span></p>
+    <div class="container hero-content">
+      <div class="hero-panel">
+        <p class="eyebrow">
+          <span lang="el">Chelmos - Vouraikos UNESCO Global Geopark</span>
+          <span lang="en">Chelmos - Vouraikos UNESCO Global Geopark</span>
+        </p>
+        <h1>
+          <span lang="el">Φαράγγι Βουραϊκού: Η Δύναμη του Νερού και του Βράχου</span>
+          <span lang="en">Vouraikos Gorge: The Power of Water and Rock</span>
+        </h1>
+        <p class="hero-lead">
+          <span lang="el">Πυκνή βλάστηση, φυσικοί καταρράκτες και απόκρημνα περάσματα συνθέτουν ένα γεωλογικό μνημείο, το οποίο οι πεζοπόροι ανακαλύπτουν ακολουθώντας την κοίτη του νερού από το Διακοπτό μέχρι τα Καλάβρυτα.</span>
+          <span lang="en">Dense vegetation, natural waterfalls, and steep passages compose a geological monument that hikers discover by following the riverbed from Diakofto to Kalavryta.</span>
+        </p>
       </div>
-    </section>
-
-    <!-- ΝΕΟ SECTION: ΠΟΛΙΤΙΣΜΟΣ -->
-    <section id="culture" class="content-section">
-      <div class="glass-panel">
-        <h2><span lang="el">Πολιτισμός</span><span lang="en">Culture</span></h2>
-        <div class="placeholder-image" style="width:100%;height:220px;background:#222;border-radius:12px;margin-bottom:18px;display:flex;align-items:center;justify-content:center;color:#888;font-size:1.2rem;">[Placeholder Εικόνας]</div>
-        <p><span lang="el">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</span><br><span lang="en">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</span></p>
+      <div class="hero-actions">
+        <a class="btn" href="#gorge"><span lang="el">Ανακάλυψε το φαράγγι</span><span lang="en">Explore the gorge</span></a>
+        <a class="btn btn-secondary" href="#gallery"><span lang="el">Δες τις εικόνες</span><span lang="en">View the gallery</span></a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ΝΕΟ SECTION: ΔΡΑΣΤΗΡΙΟΤΗΤΕΣ -->
-    <section id="activities" class="content-section">
-      <div class="glass-panel">
-        <h2><span lang="el">Δραστηριότητες</span><span lang="en">Activities</span></h2>
-        <div class="placeholder-image" style="width:100%;height:220px;background:#222;border-radius:12px;margin-bottom:18px;display:flex;align-items:center;justify-content:center;color:#888;font-size:1.2rem;">[Placeholder Εικόνας]</div>
-        <p><span lang="el">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</span><br><span lang="en">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</span></p>
+  <section id="gorge" class="section story-section">
+    <div class="container story-grid">
+      <div class="story-copy">
+        <p class="section-label">
+          <span lang="el">Το Φαράγγι</span>
+          <span lang="en">The Gorge</span>
+        </p>
+        <h2>
+          <span lang="el">Ένα φυσικό πέρασμα γεωλογικής έντασης και μυθικής αφήγησης</span>
+          <span lang="en">A natural passage shaped by geological drama and mythic memory</span>
+        </h2>
+        <p>
+          <span lang="el">Σύμφωνα με τον ελληνικό μύθο, το φαράγγι του Βουραϊκού δημιουργήθηκε από τον Ηρακλή, ο οποίος άνοιξε το πέρασμα για να φτάσει στην αγαπημένη του Βούρα, εκεί όπου το βουνό συναντά τη θάλασσα.</span>
+          <span lang="en">According to Greek myth, the Vouraikos Gorge was carved open by Hercules so he could reach his beloved Voura, where the mountain meets the sea.</span>
+        </p>
+        <p>
+          <span lang="el">Σε μήκος περίπου 20 χιλιομέτρων, ο ποταμός διασχίζει πυκνή βλάστηση, κάθετα βράχια, μικρούς καταρράκτες και σπηλιές, δημιουργώντας μια διαδρομή που μοιάζει περισσότερο με ντοκιμαντέρ φύσης παρά με τυπικό τουριστικό προορισμό.</span>
+          <span lang="en">Across roughly 20 kilometers, the river moves through dense vegetation, vertical cliffs, waterfalls, and caves, creating a route that feels closer to a nature documentary than a conventional destination.</span>
+        </p>
       </div>
-    </section>
+      <div class="story-media story-media-stack">
+        <div class="media-frame">
+          <iframe src="https://www.youtube.com/embed/J3h8kkOAtIk" title="Vouraikos Gorge – Chelmos UNESCO Global Geopark" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <figure class="supporting-visual">
+          <img src="assets/photos/gallery_1/image_4.webp" alt="Νερά και βράχια στο φαράγγι του Βουραϊκού | Water and rock textures in the Vouraikos Gorge">
+          <figcaption>
+            <span lang="el">Τοπίο νερού, βλάστησης και βράχου στο εσωτερικό του φαραγγιού.</span>
+            <span lang="en">Water, vegetation, and rock textures within the inner gorge.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="image-break image-break-parallax" style="background-image:url('assets/photos/gallery_1/image_9.webp');">
+    <div class="image-break-caption">
+      <span lang="el">Στενά περάσματα, απόκρημνες πλαγιές και η αίσθηση ότι το τοπίο ανοίγει καρέ καρέ.</span>
+      <span lang="en">Narrow passages, steep slopes, and the sense of a landscape unfolding frame by frame.</span>
+    </div>
+  </section>
+
+  <section id="odontotos" class="section story-section alt-tone">
+    <div class="container story-grid reverse">
+      <div class="story-media">
+        <img src="assets/photos/gallery_1/image_3.webp" alt="Ο Οδοντωτός μέσα στο φαράγγι του Βουραϊκού | The Odontotos railway inside the Vouraikos Gorge">
+      </div>
+      <div class="story-copy">
+        <p class="section-label">
+          <span lang="el">Ο Οδοντωτός</span>
+          <span lang="en">The Rack Railway</span>
+        </p>
+        <h2>
+          <span lang="el">Η διαδρομή που ενώνει τον ποταμό με τις κορυφές</span>
+          <span lang="en">The route that links the river to the mountain summits</span>
+        </h2>
+        <p>
+          <span lang="el">Η ιστορική γραμμή Διακοπτού - Καλαβρύτων, γνωστή ως Οδοντωτός, διασχίζει το φαράγγι με αργό, θεατρικό ρυθμό και αποκαλύπτει ένα από τα πιο εμβληματικά σιδηροδρομικά τοπία της Ευρώπης.</span>
+          <span lang="en">The historic Diakofto - Kalavryta line, known as the Odontotos, crosses the gorge with a slow, theatrical rhythm and reveals one of Europe's most iconic railway landscapes.</span>
+        </p>
+        <p>
+          <span lang="el">Κάθε στροφή αλλάζει την κλίμακα της εμπειρίας: από στενά περάσματα και βραχώδεις τοίχους μέχρι ανοίγματα φωτός που αφήνουν το τοπίο να αναπνεύσει.</span>
+          <span lang="en">Every turn shifts the scale of the experience, from narrow passages and rock walls to sudden openings of light that let the landscape breathe.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="parallax" style="background-image:url('assets/photos/gallery_1/image_7.webp');">
+    <div class="container">
+      <p>
+        <span lang="el">«Στον Βουραϊκό, το τοπίο δεν περιγράφεται απλώς. Αποκαλύπτεται αργά, σαν σκηνή από ντοκιμαντέρ που φωτίζεται από το νερό και την πέτρα.»</span>
+        <span lang="en">"In Vouraikos, the landscape is not simply described. It is revealed slowly, like a documentary scene lit by water and stone."</span>
+      </p>
+    </div>
+  </section>
+
+  <section id="geopark" class="section story-section">
+    <div class="container story-grid">
+      <div class="story-copy">
+        <p class="section-label">
+          <span lang="el">Γεωπάρκο UNESCO</span>
+          <span lang="en">UNESCO Geopark</span>
+        </p>
+        <h2>
+          <span lang="el">Μια προστατευόμενη γεωλογική και πολιτιστική ενότητα διεθνούς σημασίας</span>
+          <span lang="en">A protected geological and cultural landscape of international significance</span>
+        </h2>
+        <p>
+          <span lang="el">Το Γεωπάρκο Χελμού - Βουραϊκού ανήκει στο Δίκτυο Παγκόσμιων Γεωπάρκων της UNESCO, αναγνωρισμένο για τη μοναδική γεωμορφολογία, τη βιοποικιλότητα και τη σύνδεσή του με την τοπική μνήμη και παράδοση.</span>
+          <span lang="en">The Chelmos - Vouraikos Geopark is part of the UNESCO Global Geoparks Network, recognized for its singular geomorphology, biodiversity, and its ties to local memory and tradition.</span>
+        </p>
+        <p>
+          <span lang="el">Η εμπειρία του επισκέπτη δεν είναι μόνο θέαση. Είναι ανάγνωση στρωμάτων χρόνου, φυσικών μεταβολών και ανθρώπινων ιστοριών που συνυπάρχουν στο ίδιο τοπίο.</span>
+          <span lang="en">The visitor experience is not just visual. It is a reading of layered time, natural transformation, and human stories coexisting within the same landscape.</span>
+        </p>
+      </div>
+      <div class="story-media">
+        <img src="assets/photos/gallery_1/image_5.webp" alt="Τοπίο του Γεωπάρκου Χελμού Βουραϊκού | Landscape of the Chelmos Vouraikos Geopark">
+      </div>
+    </div>
+  </section>
+
+  <section class="image-break image-break-parallax" style="background-image:url('assets/photos/gallery_1/image_8.webp');">
+    <div class="image-break-caption">
+      <span lang="el">Εκεί όπου η βλάστηση συναντά την πέτρα, η διαδρομή αποκτά κλίμακα και σιωπή.</span>
+      <span lang="en">Where vegetation meets stone, the route takes on scale and silence.</span>
+    </div>
+  </section>
+
+  <section id="experiences" class="section alt-tone">
+    <div class="container">
+      <div class="section-heading">
+        <p class="section-label">
+          <span lang="el">Εμπειρίες</span>
+          <span lang="en">Experiences</span>
+        </p>
+        <h2>
+          <span lang="el">Τέσσερις τρόποι να ζήσεις τον Βουραϊκό</span>
+          <span lang="en">Four ways to experience Vouraikos</span>
+        </h2>
+      </div>
+      <div class="experience-grid">
+        <article class="card">
+          <h3><span lang="el">Πεζοπορία</span><span lang="en">Hiking</span></h3>
+          <p><span lang="el">Μονοπάτια που ακολουθούν τη ροή του ποταμού και αποκαλύπτουν συνεχώς νέες οπτικές του φαραγγιού.</span><span lang="en">Paths that follow the river and constantly reveal new perspectives of the gorge.</span></p>
+        </article>
+        <article class="card">
+          <h3><span lang="el">Σιδηροδρομική Διαδρομή</span><span lang="en">Rail Journey</span></h3>
+          <p><span lang="el">Η εμπειρία του Οδοντωτού προσφέρει αργή, πανοραμική ανάγνωση του τοπίου με μοναδικό ρυθμό.</span><span lang="en">The Odontotos offers a slow, panoramic reading of the landscape with a singular rhythm.</span></p>
+        </article>
+        <article class="card">
+          <h3><span lang="el">Γεωλογία</span><span lang="en">Geology</span></h3>
+          <p><span lang="el">Βράχοι, σχηματισμοί και χαράξεις που φανερώνουν την ένταση και το βάθος του γεωλογικού χρόνου.</span><span lang="en">Rock faces, formations, and carved passages that reveal the intensity of geological time.</span></p>
+        </article>
+        <article class="card">
+          <h3><span lang="el">Φωτογραφία Φύσης</span><span lang="en">Nature Photography</span></h3>
+          <p><span lang="el">Φως, ομίχλη, νερό και υφή συνθέτουν ένα πεδίο ιδανικό για ήρεμη, αφηγηματική εικόνα.</span><span lang="en">Light, mist, water, and texture compose an ideal field for calm, narrative-driven imagery.</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="section section-narrow gallery-section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="section-label">
+          <span lang="el">Οπτικό Αρχείο</span>
+          <span lang="en">Visual Archive</span>
+        </p>
+        <p class="section-kicker">
+          <span lang="el">Photo Essay</span>
+          <span lang="en">Photo Essay</span>
+        </p>
+        <h2>
+          <span lang="el">Μια συλλογή εικόνων με ρυθμό, υφή και κλίμακα</span>
+          <span lang="en">A collection of images shaped by rhythm, texture, and scale</span>
+        </h2>
+      </div>
+      <div class="gallery">
+        <img src="assets/photos/gallery_1/image_1.webp" alt="Πανόραμα του Βουραϊκού | Vouraikos panorama">
+        <img src="assets/photos/gallery_1/image_6.webp" alt="Τοπίο και βράχια του φαραγγιού | Gorge landscape and rock faces">
+        <img src="assets/photos/gallery_1/image_3.webp" alt="Οδοντωτός στο φυσικό τοπίο | Railway within the landscape">
+        <img src="assets/photos/gallery_1/image_4.webp" alt="Ροή του νερού στον Βουραϊκό | River flow in Vouraikos">
+        <img src="assets/photos/gallery_1/image_5.webp" alt="Γεωλογικές υφές στο φαράγγι | Geological textures inside the gorge">
+        <img src="assets/photos/gallery_1/image_6.webp" alt="Διαδρομή μέσα στο φυσικό περιβάλλον | Route through the natural environment">
+        <img src="assets/photos/gallery_1/image_7.webp" alt="Ατμοσφαιρική εικόνα του τοπίου | Atmospheric landscape image">
+        <img src="assets/photos/gallery_1/image_8.webp" alt="Απόκρημνα περάσματα και βλάστηση | Steep passages and vegetation">
+        <img src="assets/photos/gallery_1/image_9.webp" alt="Κινηματογραφική θέα του γεωπάρκου | Cinematic view of the geopark">
+        <img src="assets/photos/gallery_1/image_10.webp" alt="Λεπτομέρειες του τοπίου του Βουραϊκού | Landscape details of Vouraikos">
+      </div>
+    </div>
+  </section>
 </main>
 
 
-<footer>
-  <span lang="el">Παγκόσμιο Γεωπάρκο UNESCO | Οπτικό Αρχείο Discover Diakopto © 2026 | WebHostPro</span><br>
-  <span lang="en">UNESCO Global Geopark | Discover Diakopto Visual Archives © 2026  | WebHostPro</span>
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <p class="footer-title"><span lang="el">Βουραϊκός</span><span lang="en">Vouraikos</span></p>
+      <p><span lang="el">Μια ήρεμη, κινηματογραφική εισαγωγή στο φαράγγι, τον Οδοντωτό και το Παγκόσμιο Γεωπάρκο UNESCO Χελμού - Βουραϊκού.</span><span lang="en">A calm, cinematic introduction to the gorge, the Odontotos railway, and the Chelmos - Vouraikos UNESCO Global Geopark.</span></p>
+    </div>
+    <div>
+      <p class="footer-title"><span lang="el">Ενότητες</span><span lang="en">Sections</span></p>
+      <a href="#gorge"><span lang="el">Το Φαράγγι</span><span lang="en">The Gorge</span></a>
+      <a href="#odontotos"><span lang="el">Ο Οδοντωτός</span><span lang="en">The Railway</span></a>
+      <a href="#geopark"><span lang="el">Γεωπάρκο</span><span lang="en">Geopark</span></a>
+    </div>
+    <div>
+      <p class="footer-title"><span lang="el">Εμπειρία</span><span lang="en">Experience</span></p>
+      <a href="#experiences"><span lang="el">Δραστηριότητες</span><span lang="en">Experiences</span></a>
+      <a href="#gallery"><span lang="el">Οπτικό Αρχείο</span><span lang="en">Visual Archive</span></a>
+      <a href="#home"><span lang="el">Επιστροφή στην αρχή</span><span lang="en">Back to top</span></a>
+    </div>
+  </div>
+  <div class="container">
+    <p class="footer-note-line">
+      <span lang="el">Παγκόσμιο Γεωπάρκο UNESCO | Οπτικό Αρχείο Discover Diakopto © 2026 | WebHostPro all rights reserved</span>
+      <span lang="en">UNESCO Global Geopark | Discover Diakopto Visual Archives © 2026 | WebHostPro all rights reserved</span>
+    </p>
+  </div>
 </footer>
 
 <script src="script.js"></script>
-<script>
-// Simple language switcher
-function setLang(lang) {
-  document.documentElement.lang = lang;
-  document.querySelectorAll('[lang]').forEach(el => {
-    el.style.display = (el.getAttribute('lang') === lang) ? '' : 'none';
-  });
-}
-// Default: show Greek
-setLang('el');
-</script>
 
 </body>
 </html>
