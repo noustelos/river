@@ -509,6 +509,44 @@ nav a:focus-visible,
   gap: 20px;
 }
 
+.official-source-card {
+  margin-top: 16px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(17, 22, 21, 0.14);
+  box-shadow: var(--shadow-soft);
+}
+
+.official-source-text {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.official-source-link {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 16px;
+  background: #111615;
+  color: var(--accent-gold);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Inter", sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.official-source-link:hover,
+.official-source-link:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
 .media-frame iframe {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -673,6 +711,70 @@ nav a:focus-visible,
 
 .card p {
   color: var(--text-muted);
+}
+
+.credits-section {
+  padding: 68px 0;
+  background: linear-gradient(180deg, rgba(240, 232, 214, 0.62) 0%, rgba(248, 244, 236, 0.95) 100%);
+  border-top: 1px solid rgba(17, 22, 21, 0.08);
+  border-bottom: 1px solid rgba(17, 22, 21, 0.08);
+}
+
+.credits-section .section-title {
+  color: #18211f;
+  font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.credits-section .section-subtitle {
+  color: var(--text-muted);
+  margin-bottom: 34px;
+  max-width: 760px;
+}
+
+.credits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.credit-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
+  padding: 20px;
+  border: 1px solid rgba(17, 22, 21, 0.1);
+  background: #f7f2e7;
+  box-shadow: var(--shadow-soft);
+  text-decoration: none;
+  transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.credit-card span {
+  color: #18211f;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.credit-card small {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+
+.credit-card:hover,
+.credit-card:focus-visible {
+  border-color: rgba(17, 22, 21, 0.2);
+  background: #fbf7ef;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+.credit-card:focus-visible {
+  outline: 2px solid rgba(242, 201, 76, 0.45);
+  outline-offset: 2px;
 }
 
 .footer {
@@ -1022,6 +1124,14 @@ nav a:focus-visible,
     padding: 28px 22px;
   }
 
+  .credits-section {
+    padding: 54px 0;
+  }
+
+  .credits-grid {
+    gap: 14px;
+  }
+
   .footer {
     padding: 48px 0;
   }
@@ -1166,6 +1276,15 @@ nav a:focus-visible,
 
   .card {
     padding: 24px 18px;
+  }
+
+  .credits-section {
+    padding: 48px 0;
+  }
+
+  .credit-card {
+    min-height: 108px;
+    padding: 16px;
   }
 
   .footer {
