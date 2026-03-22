@@ -69,7 +69,7 @@ a {
 h1,
 h2,
 h3 {
-  font-family: "Playfair Display", serif;
+  font-family: "Proza Libre", sans-serif;
   font-weight: 600;
   color: #18211f;
 }
@@ -92,11 +92,16 @@ h3 {
 
 nav,
 button,
-.btn,
+.btn {
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.08em;
+}
+
 .section-label,
 .eyebrow,
-.footer-title {
-  font-family: "Inter", sans-serif;
+.footer-title,
+.section-kicker {
+  font-family: "Proza Libre", sans-serif;
   letter-spacing: 0.08em;
 }
 
@@ -140,8 +145,9 @@ button,
   font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
-  letter-spacing: 0.24em;
-  line-height: 1;
+  letter-spacing: 0.12em;
+  line-height: 1.15;
+  white-space: nowrap;
 }
 
 .logo-accent {
@@ -421,6 +427,51 @@ nav a:focus-visible,
 
 .story-copy p {
   color: var(--text-muted);
+}
+
+.info-drawer {
+  border: 1px solid rgba(17, 22, 21, 0.14);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: var(--shadow-soft);
+}
+
+.info-drawer summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  color: #111615;
+  font-family: "Proza Libre", sans-serif;
+  font-size: 0.96rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-drawer summary::-webkit-details-marker {
+  display: none;
+}
+
+.info-drawer summary::after {
+  content: "+";
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--rust-iron);
+}
+
+.info-drawer[open] summary::after {
+  content: "-";
+}
+
+.drawer-content {
+  padding: 0 16px 14px;
+}
+
+.drawer-content p {
+  color: var(--text-muted);
+  margin: 0;
 }
 
 .section-label {
@@ -882,7 +933,7 @@ nav a:focus-visible,
 
   .logo a {
     font-size: 0.78rem;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.1em;
   }
 
   .logo-subtitle {
@@ -1010,7 +1061,7 @@ nav a:focus-visible,
 
   .logo a {
     font-size: 0.72rem;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.08em;
   }
 
   .logo-subtitle {
