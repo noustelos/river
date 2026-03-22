@@ -1,10 +1,6 @@
 function setLang(lang) {
   document.documentElement.lang = lang;
 
-  document.querySelectorAll("[lang]").forEach((element) => {
-    element.style.display = element.getAttribute("lang") === lang ? "" : "none";
-  });
-
   document.querySelectorAll(".lang-switcher button").forEach((button) => {
     button.classList.toggle("is-active", button.dataset.lang === lang);
   });

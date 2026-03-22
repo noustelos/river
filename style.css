@@ -27,6 +27,15 @@ html {
   scroll-behavior: smooth;
 }
 
+[lang]:not(html) {
+  display: none;
+}
+
+html[lang="el"] [lang="el"],
+html[lang="en"] [lang="en"] {
+  display: unset;
+}
+
 section[id] {
   scroll-margin-top: 110px;
 }
@@ -279,6 +288,10 @@ nav a:focus-visible,
 .hero h1,
 .hero p {
   color: #fff;
+}
+
+.hero .eyebrow {
+  color: var(--accent-gold);
 }
 
 .hero-lead {
@@ -557,6 +570,12 @@ nav a:focus-visible,
   border: 1px solid rgba(17, 22, 21, 0.08);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 .card:hover {
