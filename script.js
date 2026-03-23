@@ -9,6 +9,7 @@ function setLang(lang) {
 document.addEventListener("DOMContentLoaded", () => {
   const siteHeader = document.querySelector(".site-header");
   const navToggle = document.querySelector(".nav-toggle");
+  const galleryTrack = document.querySelector(".gallery-track");
 
   const closeMobileNav = () => {
     if (!siteHeader || !navToggle) {
@@ -47,4 +48,51 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   setLang("el");
+
+  if (galleryTrack) {
+    const slides = Array.from(galleryTrack.querySelectorAll("img"));
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (slides.length > 0) {
+      let currentIndex = 0;
+      const displayMs = 5600;
+      const fadeMs = prefersReducedMotion ? 200 : 1800;
+
+      slides.forEach((slide, index) => {
+        slide.classList.remove("is-visible", "is-zooming");
+        slide.style.zIndex = String(index === 0 ? 2 : 1);
+      });
+
+      slides[0].classList.add("is-visible", "is-zooming");
+
+      if (prefersReducedMotion) {
+        slides[0].classList.remove("is-zooming");
+      }
+
+      if (slides.length > 1) {
+        window.setInterval(() => {
+          const nextIndex = (currentIndex + 1) % slides.length;
+          const currentSlide = slides[currentIndex];
+          const nextSlide = slides[nextIndex];
+
+          currentSlide.style.zIndex = "1";
+          nextSlide.style.zIndex = "2";
+          nextSlide.classList.add("is-visible");
+
+          window.requestAnimationFrame(() => {
+            if (!prefersReducedMotion) {
+              nextSlide.classList.add("is-zooming");
+            }
+            currentSlide.classList.remove("is-visible");
+          });
+
+          window.setTimeout(() => {
+            currentSlide.classList.remove("is-zooming");
+          }, fadeMs);
+
+          currentIndex = nextIndex;
+        }, displayMs);
+      }
+    }
+  }
 });
