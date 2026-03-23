@@ -6,10 +6,46 @@ function setLang(lang) {
   });
 }
 
+async function updateGorgeTemperature() {
+  const temperatureEl = document.querySelector("#hero-weather-temp");
+
+  if (!temperatureEl) {
+    return;
+  }
+
+  const endpoint = "https://api.open-meteo.com/v1/forecast?latitude=38.2039&longitude=22.1891&current=temperature_2m&timezone=auto";
+
+  try {
+    const response = await fetch(endpoint, { cache: "no-store" });
+
+    if (!response.ok) {
+      throw new Error("Weather request failed");
+    }
+
+    const data = await response.json();
+    const temperature = data?.current?.temperature_2m;
+
+    if (typeof temperature !== "number") {
+      throw new Error("Invalid temperature payload");
+    }
+
+    temperatureEl.textContent = `${Math.round(temperature)}°C`;
+  } catch (error) {
+    temperatureEl.textContent = "--°C";
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const siteHeader = document.querySelector(".site-header");
   const navToggle = document.querySelector(".nav-toggle");
-  const galleryTrack = document.querySelector(".gallery-track");
+  const gallery = document.querySelector(".gallery");
+  const lightbox = document.querySelector("#gallery-lightbox");
+  const lightboxImage = document.querySelector(".lightbox-image");
+  const lightboxClose = document.querySelector(".lightbox-close");
+  const lightboxPrev = document.querySelector(".lightbox-nav-prev");
+  const lightboxNext = document.querySelector(".lightbox-nav-next");
+  let galleryImages = [];
+  let currentImageIndex = -1;
 
   const closeMobileNav = () => {
     if (!siteHeader || !navToggle) {
@@ -47,52 +83,88 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  setLang("el");
-
-  if (galleryTrack) {
-    const slides = Array.from(galleryTrack.querySelectorAll("img"));
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (slides.length > 0) {
-      let currentIndex = 0;
-      const displayMs = 5600;
-      const fadeMs = prefersReducedMotion ? 200 : 1800;
-
-      slides.forEach((slide, index) => {
-        slide.classList.remove("is-visible", "is-zooming");
-        slide.style.zIndex = String(index === 0 ? 2 : 1);
-      });
-
-      slides[0].classList.add("is-visible", "is-zooming");
-
-      if (prefersReducedMotion) {
-        slides[0].classList.remove("is-zooming");
-      }
-
-      if (slides.length > 1) {
-        window.setInterval(() => {
-          const nextIndex = (currentIndex + 1) % slides.length;
-          const currentSlide = slides[currentIndex];
-          const nextSlide = slides[nextIndex];
-
-          currentSlide.style.zIndex = "1";
-          nextSlide.style.zIndex = "2";
-          nextSlide.classList.add("is-visible");
-
-          window.requestAnimationFrame(() => {
-            if (!prefersReducedMotion) {
-              nextSlide.classList.add("is-zooming");
-            }
-            currentSlide.classList.remove("is-visible");
-          });
-
-          window.setTimeout(() => {
-            currentSlide.classList.remove("is-zooming");
-          }, fadeMs);
-
-          currentIndex = nextIndex;
-        }, displayMs);
-      }
+  const closeLightbox = () => {
+    if (!lightbox || !lightboxImage) {
+      return;
     }
+
+    lightbox.hidden = true;
+    lightbox.setAttribute("aria-hidden", "true");
+    lightboxImage.src = "";
+    lightboxImage.alt = "";
+    currentImageIndex = -1;
+    document.body.style.overflow = "";
+  };
+
+  const showLightboxImage = (nextIndex) => {
+    if (!galleryImages.length || !lightboxImage) {
+      return;
+    }
+
+    const total = galleryImages.length;
+    currentImageIndex = (nextIndex + total) % total;
+    const selectedImage = galleryImages[currentImageIndex];
+
+    lightboxImage.src = selectedImage.src;
+    lightboxImage.alt = selectedImage.alt;
+  };
+
+  if (gallery && lightbox && lightboxImage && lightboxClose && lightboxPrev && lightboxNext) {
+    galleryImages = Array.from(gallery.querySelectorAll("img"));
+
+    gallery.addEventListener("click", (event) => {
+      const image = event.target.closest("img");
+
+      if (!image) {
+        return;
+      }
+
+      const imageIndex = galleryImages.indexOf(image);
+      showLightboxImage(imageIndex);
+      lightbox.hidden = false;
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    });
+
+    lightboxClose.addEventListener("click", closeLightbox);
+
+    lightboxPrev.addEventListener("click", () => {
+      if (currentImageIndex !== -1) {
+        showLightboxImage(currentImageIndex - 1);
+      }
+    });
+
+    lightboxNext.addEventListener("click", () => {
+      if (currentImageIndex !== -1) {
+        showLightboxImage(currentImageIndex + 1);
+      }
+    });
+
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (lightbox.hidden) {
+        return;
+      }
+
+      if (event.key === "Escape") {
+        closeLightbox();
+      }
+
+      if (event.key === "ArrowLeft" && currentImageIndex !== -1) {
+        showLightboxImage(currentImageIndex - 1);
+      }
+
+      if (event.key === "ArrowRight" && currentImageIndex !== -1) {
+        showLightboxImage(currentImageIndex + 1);
+      }
+    });
   }
+
+  setLang("el");
+  updateGorgeTemperature();
 });
