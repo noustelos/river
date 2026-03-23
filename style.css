@@ -2173,3 +2173,95 @@ nav a:focus-visible,
     gap: 9px;
   }
 }
+
+@media (min-width: 768px) and (max-width: 900px) {
+  body {
+    font-size: 16.5px;
+    overflow-x: clip;
+  }
+
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .section {
+    padding: 92px 0;
+  }
+
+  .logo a {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    white-space: normal;
+    line-height: 1.2;
+    max-width: min(64vw, 360px);
+  }
+
+  .header-inner {
+    gap: 10px;
+  }
+
+  .hero {
+    padding-top: calc(104px + env(safe-area-inset-top));
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+
+  .hero h1 {
+    font-size: clamp(2.35rem, 5.8vw, 3.25rem);
+    line-height: 1.03;
+  }
+
+  .hero-meta {
+    margin-top: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .time-facts,
+  .journey-facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1180px) {
+  body {
+    font-size: 17px;
+  }
+
+  .container {
+    max-width: 1080px;
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .section {
+    padding: 104px 0;
+  }
+
+  .header-inner {
+    gap: 14px;
+  }
+
+  .logo a {
+    font-size: 0.76rem;
+    letter-spacing: 0.09em;
+    white-space: normal;
+    max-width: 290px;
+  }
+
+  nav ul {
+    gap: 14px;
+  }
+
+  nav a {
+    font-size: 0.72rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.85rem, 5.2vw, 3.75rem);
+  }
+
+  .hero-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
