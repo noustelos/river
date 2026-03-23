@@ -47,6 +47,57 @@ document.addEventListener("DOMContentLoaded", () => {
   let galleryImages = [];
   let currentImageIndex = -1;
 
+  const setupSmoothRouteVideoLoop = () => {
+    const routeVideos = Array.from(document.querySelectorAll(".route-videos-section video"));
+
+    if (!routeVideos.length) {
+      return;
+    }
+
+    routeVideos.forEach((video) => {
+      const loopBackTo = 0.04;
+      const loopCutoff = 0.08;
+      let isRewinding = false;
+
+      const primePlayback = () => {
+        if (Number.isFinite(video.duration) && video.duration > 0.2 && video.currentTime < loopBackTo) {
+          video.currentTime = loopBackTo;
+        }
+      };
+
+      video.addEventListener("loadedmetadata", primePlayback, { once: true });
+
+      video.addEventListener("timeupdate", () => {
+        if (!Number.isFinite(video.duration) || isRewinding) {
+          return;
+        }
+
+        const remaining = video.duration - video.currentTime;
+
+        if (remaining <= loopCutoff) {
+          isRewinding = true;
+          video.currentTime = loopBackTo;
+
+          const resumedPlayback = video.play();
+
+          if (resumedPlayback && typeof resumedPlayback.catch === "function") {
+            resumedPlayback.catch(() => {});
+          }
+
+          requestAnimationFrame(() => {
+            isRewinding = false;
+          });
+        }
+      });
+
+      const autoplayAttempt = video.play();
+
+      if (autoplayAttempt && typeof autoplayAttempt.catch === "function") {
+        autoplayAttempt.catch(() => {});
+      }
+    });
+  };
+
   const closeMobileNav = () => {
     if (!siteHeader || !navToggle) {
       return;
@@ -165,6 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  setupSmoothRouteVideoLoop();
   setLang("el");
   updateGorgeTemperature();
 });
