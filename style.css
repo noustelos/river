@@ -570,6 +570,28 @@ nav a:focus-visible,
   margin: 0;
 }
 
+.drawer-content p + p {
+  margin-top: 12px;
+}
+
+.drawer-content ul {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: var(--text-muted);
+  display: grid;
+  gap: 8px;
+}
+
+.drawer-content li {
+  line-height: 1.6;
+}
+
+.experiences-guide {
+  margin-top: 34px;
+  display: grid;
+  gap: 12px;
+}
+
 .section-label {
   color: #111615;
   display: inline-block;
@@ -1678,6 +1700,10 @@ nav a:focus-visible,
     max-width: none;
   }
 
+  .experiences-guide {
+    margin-top: 26px;
+  }
+
   .story-media-stack {
     gap: 16px;
   }
@@ -1797,6 +1823,10 @@ nav a:focus-visible,
 
   .story-copy {
     gap: 16px;
+  }
+
+  .experiences-guide {
+    margin-top: 22px;
   }
 
   .section-heading {
@@ -1976,6 +2006,10 @@ nav a:focus-visible,
 
   .story-copy {
     gap: 14px;
+  }
+
+  .experiences-guide {
+    margin-top: 18px;
   }
 
   .supporting-visual {
