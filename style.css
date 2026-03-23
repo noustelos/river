@@ -1619,17 +1619,25 @@ nav a:focus-visible,
   }
 
   .hero {
+    height: auto;
     min-height: 100svh;
     text-align: left;
-    padding-top: 110px;
-    padding-bottom: 36px;
+    align-items: flex-start;
+    padding-top: calc(110px + env(safe-area-inset-top));
+    padding-bottom: calc(28px + env(safe-area-inset-bottom));
+    overflow: visible;
+  }
+
+  .hero-backdrop img {
+    object-position: center 34%;
   }
 
   .hero-meta {
     position: static;
     margin-top: 18px;
     grid-template-columns: 1fr;
-    padding-bottom: 12px;
+    gap: 10px;
+    padding-bottom: 0;
   }
 
   .hero-content {
@@ -1729,18 +1737,30 @@ nav a:focus-visible,
   }
 
   .hero {
+    height: auto;
     min-height: 100svh;
-    padding-top: 132px;
-    align-items: flex-end;
+    padding-top: calc(124px + env(safe-area-inset-top));
+    padding-bottom: calc(22px + env(safe-area-inset-bottom));
+    align-items: flex-start;
   }
 
   .hero h1 {
-    font-size: clamp(2.7rem, 14vw, 3.7rem);
+    font-size: clamp(2.4rem, 12.8vw, 3.35rem);
+    line-height: 1.03;
   }
 
   .hero-copy {
     gap: 14px;
     padding: 0;
+  }
+
+  .meta-item strong {
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .meta-item {
+    padding: 12px 14px;
   }
 
   .eyebrow,
@@ -1895,17 +1915,22 @@ nav a:focus-visible,
   }
 
   .hero {
+    height: auto;
     min-height: 100dvh;
-    padding-top: 118px;
-    padding-bottom: 24px;
+    padding-top: calc(116px + env(safe-area-inset-top));
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
   }
 
   .hero-content {
     gap: 14px;
   }
 
+  .hero-backdrop img {
+    object-position: center 30%;
+  }
+
   .hero h1 {
-    font-size: clamp(2.35rem, 12vw, 3.1rem);
+    font-size: clamp(2.1rem, 11.2vw, 2.8rem);
     line-height: 1.02;
   }
 
@@ -1920,7 +1945,8 @@ nav a:focus-visible,
   .btn {
     min-height: 46px;
     padding: 12px 16px;
-    font-size: 0.74rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.07em;
   }
 
   .section {
@@ -2007,5 +2033,143 @@ nav a:focus-visible,
 
   .footer-system {
     font-size: 0.64rem;
+  }
+}
+
+@media (max-width: 430px) and (max-height: 760px) {
+  .hero {
+    padding-top: calc(106px + env(safe-area-inset-top));
+    padding-bottom: calc(14px + env(safe-area-inset-bottom));
+  }
+
+  .hero h1 {
+    font-size: clamp(1.95rem, 10.8vw, 2.55rem);
+    line-height: 1;
+  }
+
+  .hero-copy {
+    gap: 10px;
+  }
+
+  .hero-actions {
+    gap: 8px;
+  }
+
+  .btn {
+    min-height: 44px;
+    padding: 11px 14px;
+    font-size: 0.66rem;
+  }
+
+  .hero-meta {
+    margin-top: 12px;
+    gap: 8px;
+  }
+
+  .meta-item {
+    padding: 10px 12px;
+  }
+
+  .meta-item p {
+    font-size: 0.58rem;
+  }
+
+  .meta-item strong {
+    margin-top: 4px;
+    font-size: 0.92rem;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 900px) and (orientation: landscape) and (max-height: 500px) {
+  .hero {
+    min-height: auto;
+    padding-top: calc(92px + env(safe-area-inset-top));
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+
+  .hero-content {
+    gap: 10px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.8rem, 4.8vw, 2.5rem);
+  }
+
+  .hero-actions {
+    gap: 8px;
+  }
+
+  .btn {
+    width: auto;
+    min-height: 40px;
+    padding: 10px 14px;
+    font-size: 0.62rem;
+  }
+
+  .hero-meta {
+    margin-top: 10px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .meta-item {
+    padding: 10px 12px;
+  }
+
+  .meta-item strong {
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 380px) and (min-height: 640px) and (max-height: 760px) and (orientation: portrait) {
+  .hero {
+    padding-top: calc(102px + env(safe-area-inset-top));
+  }
+
+  .hero-backdrop img {
+    object-position: center 28%;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.95rem, 10.6vw, 2.45rem);
+  }
+
+  .hero-meta {
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 381px) and (max-width: 409px) and (min-height: 780px) and (orientation: portrait) {
+  .hero {
+    padding-top: calc(112px + env(safe-area-inset-top));
+    padding-bottom: calc(18px + env(safe-area-inset-bottom));
+  }
+
+  .hero-backdrop img {
+    object-position: center 36%;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.15rem, 9.9vw, 2.95rem);
+  }
+}
+
+@media (min-width: 428px) and (max-width: 430px) and (min-height: 900px) and (orientation: portrait) {
+  .hero {
+    padding-top: calc(118px + env(safe-area-inset-top));
+    padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  }
+
+  .hero-backdrop img {
+    object-position: center 40%;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.28rem, 9.4vw, 3.08rem);
+  }
+
+  .hero-meta {
+    gap: 9px;
   }
 }
