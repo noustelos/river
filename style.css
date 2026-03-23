@@ -587,9 +587,45 @@ nav a:focus-visible,
 }
 
 .experiences-guide {
-  margin-top: 34px;
+  margin-top: 42px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 980px;
   display: grid;
-  gap: 12px;
+  gap: 16px;
+}
+
+.experiences-guide-title {
+  margin: 0 0 14px;
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  line-height: 1.15;
+  color: #18211f;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+.experiences-guide .info-drawer {
+  background: rgba(252, 251, 247, 0.92);
+  border-color: rgba(17, 22, 21, 0.16);
+  box-shadow: 0 10px 24px rgba(14, 22, 20, 0.08);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.experiences-guide .info-drawer:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(14, 22, 20, 0.12);
+}
+
+.experiences-guide .info-drawer[open] {
+  box-shadow: 0 16px 34px rgba(14, 22, 20, 0.14);
+}
+
+.experiences-guide .info-drawer summary {
+  padding: 16px 18px;
+}
+
+.experiences-guide .drawer-content {
+  padding: 0 18px 18px;
 }
 
 .section-label {
@@ -1701,7 +1737,8 @@ nav a:focus-visible,
   }
 
   .experiences-guide {
-    margin-top: 26px;
+    margin-top: 30px;
+    gap: 14px;
   }
 
   .story-media-stack {
@@ -1826,7 +1863,13 @@ nav a:focus-visible,
   }
 
   .experiences-guide {
-    margin-top: 22px;
+    margin-top: 24px;
+    gap: 12px;
+  }
+
+  .experiences-guide-title {
+    margin-bottom: 10px;
+    font-size: clamp(1.25rem, 6.1vw, 1.6rem);
   }
 
   .section-heading {
@@ -2009,7 +2052,13 @@ nav a:focus-visible,
   }
 
   .experiences-guide {
-    margin-top: 18px;
+    margin-top: 20px;
+    gap: 10px;
+  }
+
+  .experiences-guide-title {
+    margin-bottom: 8px;
+    font-size: clamp(1.15rem, 6.6vw, 1.35rem);
   }
 
   .supporting-visual {
