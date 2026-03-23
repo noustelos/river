@@ -909,12 +909,16 @@ nav a:focus-visible,
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
+  align-items: stretch;
 }
 
 .route-card {
   background: #fcfbf8;
   border: 1px solid rgba(20, 28, 26, 0.1);
   box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   transition: transform 0.32s ease, box-shadow 0.32s ease;
 }
 
@@ -941,6 +945,9 @@ nav a:focus-visible,
 
 .route-content {
   padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .route-header {
@@ -994,7 +1001,7 @@ nav a:focus-visible,
 }
 
 .route-meta {
-  margin-top: 16px;
+  margin-top: auto;
   padding-top: 14px;
   border-top: 1px solid rgba(24, 34, 31, 0.12);
   display: flex;
@@ -1002,6 +1009,25 @@ nav a:focus-visible,
   gap: 10px;
   font-size: 0.84rem;
   color: #35413f;
+}
+
+.route-more {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Inter", sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: #1f5f89;
+}
+
+.route-more:hover,
+.route-more:focus-visible {
+  color: #17486a;
 }
 
 .essentials-section {

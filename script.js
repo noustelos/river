@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const lightboxClose = document.querySelector(".lightbox-close");
   const lightboxPrev = document.querySelector(".lightbox-nav-prev");
   const lightboxNext = document.querySelector(".lightbox-nav-next");
+  const drawerLinks = Array.from(document.querySelectorAll(".route-more[data-drawer-target]"));
   let galleryImages = [];
   let currentImageIndex = -1;
 
@@ -162,6 +163,28 @@ document.addEventListener("DOMContentLoaded", () => {
       if (event.key === "ArrowRight" && currentImageIndex !== -1) {
         showLightboxImage(currentImageIndex + 1);
       }
+    });
+  }
+
+  if (drawerLinks.length) {
+    drawerLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        const targetId = link.dataset.drawerTarget;
+
+        if (!targetId) {
+          return;
+        }
+
+        const targetDrawer = document.getElementById(targetId);
+
+        if (!targetDrawer) {
+          return;
+        }
+
+        event.preventDefault();
+        targetDrawer.open = true;
+        targetDrawer.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
     });
   }
 
