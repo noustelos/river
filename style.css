@@ -628,6 +628,248 @@ nav a:focus-visible,
   padding: 0 18px 18px;
 }
 
+.pausanias-section {
+  margin-top: 20px;
+  padding: 28px;
+  border: 1px solid rgba(20, 28, 25, 0.12);
+  background: linear-gradient(180deg, rgba(241, 236, 226, 0.95) 0%, rgba(249, 245, 237, 0.98) 100%);
+  box-shadow: var(--shadow-soft);
+}
+
+.pausanias-heading {
+  display: grid;
+  gap: 8px;
+}
+
+.pausanias-title {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.4vw, 2.1rem);
+  line-height: 1.1;
+}
+
+.pausanias-meta {
+  font-family: "Inter", sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #55635f;
+}
+
+.pausanias-intro {
+  max-width: 68ch;
+  color: var(--text-muted);
+}
+
+.pausanias-panels {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.pausanias-panel {
+  padding: 18px;
+  border: 1px solid rgba(20, 28, 25, 0.12);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 12px 26px rgba(13, 20, 18, 0.08);
+}
+
+.pausanias-panel-label {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rust-iron);
+}
+
+.pausanias-panel-subtitle {
+  margin: 8px 0 0;
+  color: #596663;
+  font-size: 0.9rem;
+}
+
+.pausanias-quote {
+  margin: 14px 0 0;
+  padding-left: 16px;
+  border-left: 3px solid rgba(201, 169, 92, 0.62);
+  font-family: "Noto Serif", serif;
+  font-size: 0.98rem;
+  line-height: 1.72;
+  color: #273230;
+}
+
+.pausanias-quote-ancient {
+  font-size: 1rem;
+  line-height: 1.82;
+}
+
+.pausanias-notes {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.pausanias-note-card {
+  padding: 16px;
+  border: 1px solid rgba(20, 28, 25, 0.1);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.pausanias-note-card h4 {
+  margin: 0 0 8px;
+  font-family: "Noto Serif", serif;
+  font-size: 1.02rem;
+  line-height: 1.2;
+  color: #18211f;
+}
+
+.pausanias-note-card p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.travellers-section {
+  margin-top: 20px;
+  padding: 24px;
+  border: 1px solid rgba(18, 25, 23, 0.12);
+  background: linear-gradient(180deg, rgba(247, 244, 236, 0.96) 0%, rgba(252, 249, 243, 0.9) 100%);
+  box-shadow: var(--shadow-soft);
+}
+
+.travellers-heading {
+  display: grid;
+  gap: 8px;
+}
+
+.travellers-title {
+  margin: 0;
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
+  line-height: 1.12;
+}
+
+.travellers-intro {
+  max-width: 62ch;
+  color: var(--text-muted);
+}
+
+.travellers-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.traveller-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(21, 31, 28, 0.12);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 12px 26px rgba(13, 20, 18, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.traveller-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(13, 20, 18, 0.12);
+  border-color: rgba(21, 31, 28, 0.18);
+}
+
+.traveller-card summary {
+  list-style: none;
+  cursor: pointer;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr auto;
+  gap: 10px;
+  flex: 1;
+  padding: 18px;
+}
+
+.traveller-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.traveller-meta {
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #55635f;
+}
+
+.traveller-name {
+  font-family: "Noto Serif", serif;
+  font-size: 1.28rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: #18211f;
+}
+
+.traveller-focus {
+  font-family: "Inter", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rust-iron);
+}
+
+.traveller-teaser {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.traveller-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1f5f89;
+}
+
+.traveller-cta::after {
+  content: "+";
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.traveller-card[open] .traveller-cta::after {
+  content: "-";
+}
+
+.traveller-drawer {
+  padding: 0 18px 18px;
+  border-top: 1px solid rgba(21, 31, 28, 0.1);
+}
+
+.traveller-context {
+  margin-top: 14px;
+  color: var(--text-muted);
+  font-size: 0.94rem;
+}
+
+.traveller-quote {
+  margin: 14px 0 0;
+  padding-left: 16px;
+  border-left: 3px solid rgba(201, 169, 92, 0.62);
+  color: #273230;
+  font-family: "Noto Serif", serif;
+  font-size: 0.98rem;
+  line-height: 1.72;
+}
+
 .section-label {
   color: #111615;
   display: inline-block;
@@ -1390,6 +1632,27 @@ nav a:focus-visible,
   text-align: left;
 }
 
+.footer .footer-credit-link {
+  display: inline;
+  margin-bottom: 0;
+  font-weight: 700;
+  color: #21333b;
+  text-decoration: none;
+  box-shadow: none;
+  transition: color 0.2s ease;
+}
+
+.footer .footer-credit-link-studio {
+  font-family: "Space Grotesk", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.footer .footer-credit-link:hover,
+.footer .footer-credit-link:focus-visible {
+  color: #111716;
+  box-shadow: none;
+}
+
 .footer-system {
   margin: 0;
   display: inline-flex;
@@ -1772,6 +2035,11 @@ nav a:focus-visible,
     max-width: none;
   }
 
+  .pausanias-section,
+  .travellers-section {
+    padding: 22px;
+  }
+
   .experiences-guide {
     margin-top: 30px;
     gap: 14px;
@@ -1858,6 +2126,21 @@ nav a:focus-visible,
     line-height: 1.25;
   }
 
+  .pausanias-section,
+  .travellers-section {
+    padding: 18px;
+  }
+
+  .pausanias-panels,
+  .pausanias-notes,
+  .travellers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pausanias-panel {
+    padding: 16px;
+  }
+
   .meta-item {
     padding: 12px 14px;
   }
@@ -1896,6 +2179,12 @@ nav a:focus-visible,
 
   .story-copy {
     gap: 16px;
+  }
+
+  .traveller-card summary,
+  .traveller-drawer {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .experiences-guide {
