@@ -1990,9 +1990,24 @@ nav a:focus-visible,
   }
 
   .header-inner {
+    grid-template-columns: minmax(0, 1fr) auto auto;
     gap: 10px;
     padding-top: 14px;
     padding-bottom: 14px;
+  }
+
+  .logo {
+    min-width: 0;
+  }
+
+  .logo a {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .lang-switcher {
+    gap: 4px;
   }
 
   .nav-toggle {
