@@ -1228,35 +1228,75 @@ nav a:focus-visible,
   line-height: 1.55;
 }
 
-.image-break {
-  height: min(60vh, 760px);
-  min-height: 420px;
-  max-height: 760px;
+.scroll-panel {
   position: relative;
-  overflow: hidden;
+  margin: clamp(24px, 4vw, 48px) 0;
 }
 
-.image-break-parallax {
+.scroll-panel-stage {
+  position: relative;
+  min-height: clamp(420px, 56vw, 760px);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  background: #0b1111;
+  box-shadow: var(--shadow-deep);
+  border-radius: 8px;
+}
+
+.scroll-panel-media {
+  position: absolute;
+  inset: 0;
+  background-image: var(--panel-image);
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  transform: none;
 }
 
-.image-break-full-bleed {
+.scroll-panel-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(10, 14, 13, 0.08) 0%, rgba(10, 14, 13, 0.18) 48%, rgba(10, 14, 13, 0.36) 100%);
+}
+
+.scroll-panel-quote {
+  margin: clamp(32px, 5vw, 56px) 0;
+}
+
+.scroll-panel-quote .scroll-panel-stage {
+  align-items: center;
+  min-height: clamp(360px, 44vw, 560px);
+}
+
+.scroll-panel-quote .scroll-panel-stage::after {
+  background:
+    linear-gradient(90deg, rgba(8, 12, 11, 0.72) 0%, rgba(8, 12, 11, 0.38) 34%, rgba(8, 12, 11, 0.16) 62%, rgba(8, 12, 11, 0.46) 100%),
+    linear-gradient(180deg, rgba(8, 12, 11, 0.2) 0%, rgba(8, 12, 11, 0.08) 42%, rgba(8, 12, 11, 0.46) 100%);
+}
+
+.scroll-panel-content,
+.image-break-caption {
+  position: relative;
+  z-index: 1;
+}
+
+.scroll-panel-content {
+  width: 100%;
+  transform: none;
+  opacity: 1;
+}
+
+.scroll-panel-full-bleed {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
 }
 
-.image-break-spaced-top {
+.scroll-panel-spaced-top {
   margin-top: clamp(24px, 4vw, 48px);
-}
-
-.image-break img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  box-shadow: var(--shadow-deep);
 }
 
 .image-break-caption {
@@ -1264,7 +1304,6 @@ nav a:focus-visible,
   left: 24px;
   right: 24px;
   bottom: 24px;
-  z-index: 1;
   max-width: 620px;
   padding: 14px 18px;
   background: rgba(12, 16, 16, 0.3);
@@ -1272,30 +1311,18 @@ nav a:focus-visible,
   font-size: 0.98rem;
   line-height: 1.5;
   backdrop-filter: blur(6px);
+  transform: none;
+  opacity: 1;
 }
 
-.parallax {
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-  padding: clamp(112px, 10vw, 160px) 0;
-  color: white;
-  text-align: center;
-  position: relative;
-}
-
-.parallax .container {
-  position: relative;
-  z-index: 1;
-}
-
-.parallax p {
+.scroll-panel-quote p {
   max-width: 880px;
   margin: 0 auto;
   font-size: clamp(2rem, 3vw, 32px);
   line-height: 1.4;
   font-family: "Noto Serif", serif;
   text-align: left;
+  color: #fff;
 }
 
 .alt-tone {
@@ -1556,22 +1583,19 @@ nav a:focus-visible,
 
 @media (min-width: 1101px) and (hover: hover) and (pointer: fine) {
   #gorge .story-grid {
-    align-items: stretch;
+    align-items: start;
   }
 
   #gorge .story-media-stack {
-    height: 100%;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
+    height: auto;
+    min-height: auto;
+    display: grid;
   }
 
   #gorge .gorge-side-gallery {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    flex: 1;
-    min-height: 0;
   }
 
   #gorge .gorge-side-photo {
@@ -1580,8 +1604,8 @@ nav a:focus-visible,
   }
 
   #gorge .gorge-side-photo:last-child {
-    flex: 1;
-    min-height: 0;
+    flex: none;
+    min-height: auto;
   }
 
   #gorge .gorge-side-photo img {
@@ -1593,8 +1617,9 @@ nav a:focus-visible,
   }
 
   #gorge .gorge-side-photo:last-child img {
-    height: 100%;
-    aspect-ratio: auto;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
   }
 }
 
@@ -2101,14 +2126,14 @@ nav a:focus-visible,
   }
 }
 
-@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+@media (hover: none), (pointer: coarse) {
   html {
     scroll-behavior: auto;
   }
 
-  .parallax,
-  .image-break-parallax {
-    background-attachment: scroll;
+  .scroll-panel-stage {
+    height: clamp(320px, 62vh, 560px);
+    min-height: 0;
   }
 }
 
@@ -2255,13 +2280,6 @@ nav a:focus-visible,
     padding: 96px 0;
   }
 
-  .parallax {
-    padding: 120px 0;
-  }
-
-  .image-break {
-    min-height: 340px;
-  }
 }
 
 @media (max-width: 900px) {
@@ -2412,15 +2430,6 @@ nav a:focus-visible,
     padding: 12px;
   }
 
-  .parallax {
-    background-attachment: scroll;
-    padding: 120px 0;
-  }
-
-  .parallax p {
-    max-width: 100%;
-  }
-
   .hero::after {
     background:
       linear-gradient(180deg, rgba(8, 12, 11, 0.28) 0%, rgba(8, 12, 11, 0.18) 38%, rgba(8, 12, 11, 0.52) 100%);
@@ -2430,8 +2439,16 @@ nav a:focus-visible,
     columns: 2;
   }
 
-  .image-break-parallax {
-    background-attachment: scroll;
+  .scroll-panel-stage {
+    min-height: 360px;
+  }
+
+  .scroll-panel-quote .scroll-panel-stage {
+    min-height: 400px;
+  }
+
+  .scroll-panel-quote p {
+    max-width: 100%;
   }
 }
 
@@ -2589,10 +2606,6 @@ nav a:focus-visible,
     font-size: 0.88rem;
   }
 
-  .image-break {
-    min-height: 300px;
-  }
-
   .image-break-caption {
     left: 16px;
     right: 16px;
@@ -2602,11 +2615,15 @@ nav a:focus-visible,
     line-height: 1.4;
   }
 
-  .parallax {
-    padding: 88px 0;
+  .scroll-panel-stage {
+    min-height: 320px;
   }
 
-  .parallax p {
+  .scroll-panel-quote .scroll-panel-stage {
+    min-height: 340px;
+  }
+
+  .scroll-panel-quote p {
     font-size: clamp(1.5rem, 8vw, 2rem);
     line-height: 1.32;
   }
@@ -2795,10 +2812,6 @@ nav a:focus-visible,
     line-height: 1.45;
   }
 
-  .image-break {
-    min-height: 270px;
-  }
-
   .image-break-caption {
     left: 12px;
     right: 12px;
@@ -2809,11 +2822,15 @@ nav a:focus-visible,
     line-height: 1.35;
   }
 
-  .parallax {
-    padding: 72px 0;
+  .scroll-panel-stage {
+    min-height: 280px;
   }
 
-  .parallax p {
+  .scroll-panel-quote .scroll-panel-stage {
+    min-height: 300px;
+  }
+
+  .scroll-panel-quote p {
     font-size: clamp(1.3rem, 7vw, 1.7rem);
   }
 
@@ -3151,7 +3168,4 @@ nav a:focus-visible,
     bottom: 22px;
   }
 
-  .image-break {
-    min-height: 320px;
-  }
 }
