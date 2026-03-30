@@ -757,6 +757,14 @@ nav a:focus-visible,
   letter-spacing: 0.01em;
 }
 
+.experiences-guide .section-highlight-label {
+  color: var(--rust-iron);
+}
+
+.experiences-guide .section-highlight-label span {
+  color: inherit;
+}
+
 .experiences-guide .info-drawer {
   background: rgba(252, 251, 247, 0.92);
   border-color: var(--border-card);
