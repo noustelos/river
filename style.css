@@ -1234,6 +1234,10 @@ nav a:focus-visible,
   color: var(--text-muted);
 }
 
+.odontotos-btn {
+  margin-top: 28px;
+}
+
 .supporting-visual img {
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -1982,11 +1986,50 @@ nav a:focus-visible,
   justify-items: start;
 }
 
+.footer-3d-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.footer-odontotos-btn,
+.footer a.footer-odontotos-btn {
+  margin-top: 0;
+  min-height: 40px;
+  padding: 9px 22px;
+  font-size: 0.72rem;
+  display: inline-flex;
+  width: auto;
+  color: #f8fbf9;
+}
+
+.footer-whp-logo {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 0;
+  opacity: 0.82;
+  transition: opacity 0.2s ease;
+}
+
+.footer-whp-logo:hover {
+  opacity: 1;
+}
+
+.footer-whp-logo img {
+  height: 120px;
+  width: auto;
+  display: block;
+  filter: none;
+}
+
 .footer-3d-tagline {
   margin: 4px 0 0;
   align-self: start;
   justify-self: start;
   max-width: 100%;
+  user-select: none;
+  -webkit-user-select: none;
   font-family: "Noto Serif", serif;
   font-size: clamp(1.57rem, 5.51vw, 3.04rem);
   line-height: 0.95;
@@ -2031,6 +2074,17 @@ nav a:focus-visible,
   font-size: 0.94rem;
   line-height: 1.3;
   color: #24353c;
+}
+
+.footer-odontotos-btn,
+.footer a.footer-odontotos-btn {
+  margin-top: 18px;
+  min-height: 40px;
+  padding: 9px 22px;
+  font-size: 0.72rem;
+  display: inline-flex;
+  width: auto;
+  color: #f8fbf9;
 }
 
 .footer-title {
@@ -2160,6 +2214,42 @@ nav a:focus-visible,
   border-radius: 50%;
   background: #2c8b4c;
   box-shadow: 0 0 0 6px rgba(44, 139, 76, 0.18);
+}
+
+@media (min-width: 1101px) {
+  .footer {
+    padding-top: 48px;
+    padding-bottom: 44px;
+  }
+
+  .footer-grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 56px;
+  }
+
+  .footer-links {
+    max-width: 560px;
+  }
+
+  .footer-3d-wrap {
+    justify-items: end;
+    text-align: right;
+  }
+
+  .footer-3d-tagline {
+    justify-self: end;
+    transform-origin: right center;
+  }
+
+  .footer-3d-subline {
+    margin-top: -2px;
+  }
+
+  .footer-3d-cta-row {
+    margin-top: 12px;
+    justify-content: flex-end;
+  }
 }
 
 @media (min-width: 1400px) {
