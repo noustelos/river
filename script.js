@@ -188,6 +188,107 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  const parallaxPanels = Array.from(document.querySelectorAll(".scroll-panel-gorge-parallax")).map((panel) => {
+    const media = panel.querySelector(".scroll-panel-media");
+    const speed = Number(panel.dataset.parallaxSpeed || "0");
+
+    if (!media || Number.isNaN(speed)) {
+      return null;
+    }
+
+    return { panel, media, speed };
+  }).filter(Boolean);
+
+  if (parallaxPanels.length) {
+    const userAgent = navigator.userAgent || "";
+    const isIPadOS = /iPad/.test(navigator.userAgent)
+      || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const coarsePointer = window.matchMedia("(hover: none), (pointer: coarse)");
+    const phoneLikeViewport = window.matchMedia("(max-width: 500px), (max-height: 500px)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let rafId = 0;
+
+    if (isIPadOS) {
+      document.documentElement.classList.add("is-ipados");
+    }
+
+    const bindMediaChange = (query, handler) => {
+      if (typeof query.addEventListener === "function") {
+        query.addEventListener("change", handler);
+      } else if (typeof query.addListener === "function") {
+        query.addListener(handler);
+      }
+    };
+
+    const resetParallax = () => {
+      parallaxPanels.forEach(({ panel, media }) => {
+        media.style.setProperty("--parallax-shift", "0px");
+
+        if (panel.classList.contains("scroll-panel-vertical-reveal")) {
+          media.style.setProperty("--parallax-position-y", "50%");
+        }
+      });
+    };
+
+    const shouldRunParallax = () => {
+      const isIPhoneLike = /iPhone|iPod/.test(userAgent)
+        || (coarsePointer.matches && phoneLikeViewport.matches && !isIPadOS);
+
+      return !isIPhoneLike;
+    };
+
+    const updateParallax = () => {
+      rafId = 0;
+
+      if (!shouldRunParallax()) {
+        resetParallax();
+        return;
+      }
+
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+      parallaxPanels.forEach(({ panel, media, speed }) => {
+        const stage = media.closest(".scroll-panel-stage");
+
+        if (!stage) {
+          return;
+        }
+
+        const rect = stage.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > viewportHeight) {
+          return;
+        }
+
+        if (panel.classList.contains("scroll-panel-vertical-reveal")) {
+          const progress = Math.max(0, Math.min(1, (viewportHeight - rect.top) / (viewportHeight + rect.height)));
+          const positionY = 8 + progress * 84;
+          media.style.setProperty("--parallax-position-y", `${positionY.toFixed(2)}%`);
+          return;
+        }
+
+        const centerDelta = (rect.top + rect.height / 2 - viewportHeight / 2) / viewportHeight;
+        const amplitude = panel.classList.contains("scroll-panel-caption") ? 100 : 140;
+        const shift = Math.max(-120, Math.min(120, centerDelta * speed * amplitude));
+        media.style.setProperty("--parallax-shift", `${shift.toFixed(1)}px`);
+      });
+    };
+
+    const requestParallaxUpdate = () => {
+      if (rafId) {
+        return;
+      }
+
+      rafId = window.requestAnimationFrame(updateParallax);
+    };
+
+    window.addEventListener("scroll", requestParallaxUpdate, { passive: true });
+    window.addEventListener("resize", requestParallaxUpdate);
+    bindMediaChange(coarsePointer, requestParallaxUpdate);
+    bindMediaChange(phoneLikeViewport, requestParallaxUpdate);
+    bindMediaChange(reducedMotion, requestParallaxUpdate);
+    requestParallaxUpdate();
+  }
+
   setLang("el");
   updateGorgeTemperature();
 });

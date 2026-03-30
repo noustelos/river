@@ -538,6 +538,7 @@ nav a:focus-visible,
   display: grid;
   gap: 20px;
   max-width: 560px;
+  min-width: 0;
 }
 
 .story-copy p {
@@ -581,6 +582,16 @@ nav a:focus-visible,
   #gorge .story-media-stack {
     align-content: start;
   }
+}
+
+.gorge-deep-dive {
+  display: grid;
+  gap: 20px;
+}
+
+.gorge-deep-dive .pausanias-section,
+.gorge-deep-dive .travellers-section {
+  margin-top: 0;
 }
 
 .section-highlight-card,
@@ -1255,12 +1266,26 @@ nav a:focus-visible,
 }
 
 .scroll-panel-gorge-parallax .scroll-panel-media {
-  background-attachment: fixed;
+  inset: -20% 0;
+  background-attachment: scroll;
   background-position: center center;
+  transform: translate3d(0, var(--parallax-shift, 0px), 0) scale(1.08);
+  will-change: transform;
+}
+
+.is-ipados .scroll-panel-gorge-parallax .scroll-panel-media {
+  background-attachment: scroll;
 }
 
 .scroll-panel-gorge-parallax .scroll-panel-stage {
   min-height: clamp(315px, 42vw, 570px);
+}
+
+.scroll-panel-vertical-reveal .scroll-panel-media {
+  inset: 0;
+  transform: none;
+  background-position: center var(--parallax-position-y, 50%);
+  will-change: background-position;
 }
 
 .scroll-panel-stage::after {
@@ -1284,6 +1309,10 @@ nav a:focus-visible,
   background:
     linear-gradient(90deg, rgba(8, 12, 11, 0.72) 0%, rgba(8, 12, 11, 0.38) 34%, rgba(8, 12, 11, 0.16) 62%, rgba(8, 12, 11, 0.46) 100%),
     linear-gradient(180deg, rgba(8, 12, 11, 0.2) 0%, rgba(8, 12, 11, 0.08) 42%, rgba(8, 12, 11, 0.46) 100%);
+}
+
+.scroll-panel-no-gradient .scroll-panel-stage::after {
+  background: none;
 }
 
 .scroll-panel-content,
@@ -2135,7 +2164,7 @@ nav a:focus-visible,
   }
 }
 
-@media (hover: none), (pointer: coarse) {
+@media (hover: none) and (pointer: coarse) {
   html {
     scroll-behavior: auto;
   }
@@ -2150,13 +2179,10 @@ nav a:focus-visible,
     min-height: 0;
   }
 
-}
-
-@media (hover: none) and (pointer: coarse) and (max-width: 500px),
-  (hover: none) and (pointer: coarse) and (max-height: 500px) {
   .scroll-panel-gorge-parallax .scroll-panel-media {
     background-attachment: scroll;
   }
+
 }
 
 @media (min-width: 1200px) and (max-height: 1020px) and (min-aspect-ratio: 8/5) {
