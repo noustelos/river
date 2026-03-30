@@ -2041,15 +2041,11 @@ nav a:focus-visible,
   transform-origin: left center;
   text-shadow:
     #ffffff 0.006em 0.006em 0.007em,
-    #a8adb3 1px 1px 1px,
-    #a8adb3 1px 2px 1px,
-    #a8adb3 1px 3px 1px,
-    #a8adb3 1px 4px 1px,
-    #a8adb3 1px 5px 1px,
-    #a8adb3 1px 6px 1px,
-    rgba(18, 25, 28, 0.24) 1px 10px 7px,
-    rgba(18, 25, 28, 0.2) 1px 14px 14px,
-    rgba(18, 25, 28, 0.18) 1px 18px 24px;
+    #b2b7bc 1px 1px 1px,
+    #b2b7bc 1px 2px 1px,
+    #b2b7bc 1px 3px 1px,
+    rgba(18, 25, 28, 0.16) 1px 8px 7px,
+    rgba(18, 25, 28, 0.12) 1px 12px 13px;
   transition: transform 0.28s ease, text-shadow 0.28s ease;
 }
 
@@ -2057,15 +2053,11 @@ nav a:focus-visible,
   transform: perspective(1000px) rotateX(24deg) rotateZ(-0.8deg) translateY(-6px);
   text-shadow:
     #ffffff 0.006em 0.006em 0.007em,
-    #a8adb3 1px 1px 1px,
-    #a8adb3 1px 2px 1px,
-    #a8adb3 1px 3px 1px,
-    #a8adb3 1px 4px 1px,
-    #a8adb3 1px 5px 1px,
-    #a8adb3 1px 6px 1px,
-    rgba(18, 25, 28, 0.32) 1px 18px 16px,
-    rgba(18, 25, 28, 0.24) 1px 24px 24px,
-    rgba(18, 25, 28, 0.2) 1px 30px 38px;
+    #b2b7bc 1px 1px 1px,
+    #b2b7bc 1px 2px 1px,
+    #b2b7bc 1px 3px 1px,
+    rgba(18, 25, 28, 0.2) 1px 12px 11px,
+    rgba(18, 25, 28, 0.14) 1px 17px 20px;
 }
 
 .footer-3d-subline {
@@ -2238,6 +2230,7 @@ nav a:focus-visible,
   }
 
   .footer-3d-tagline {
+    font-size: clamp(1.1rem, 3.86vw, 2.13rem);
     justify-self: end;
     transform-origin: right center;
   }
