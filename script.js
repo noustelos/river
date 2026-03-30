@@ -222,10 +222,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const resetParallax = () => {
       parallaxPanels.forEach(({ panel, media }) => {
+        const stage = media.closest(".scroll-panel-stage");
         media.style.setProperty("--parallax-shift", "0px");
 
         if (isIPadOS || panel.classList.contains("scroll-panel-vertical-reveal")) {
           media.style.setProperty("--parallax-position-y", "50%");
+
+          if (stage) {
+            stage.style.setProperty("--parallax-position-y", "50%");
+          }
         }
       });
     };
@@ -234,7 +239,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const isIPhoneLike = /iPhone|iPod/.test(userAgent)
         || (coarsePointer.matches && phoneLikeViewport.matches && !isIPadOS);
 
-      return !isIPhoneLike;
+      // Keep parallax enabled only on desktop-class devices.
+      return !isIPhoneLike && !isIPadOS;
     };
 
     const updateParallax = () => {
@@ -269,7 +275,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isIPadOS) {
           const progress = Math.max(0, Math.min(1, (viewportHeight - rect.top) / (viewportHeight + rect.height)));
           const positionY = 25 + progress * 50;
-          media.style.setProperty("--parallax-position-y", `${positionY.toFixed(2)}%`);
+          const y = `${positionY.toFixed(2)}%`;
+          media.style.setProperty("--parallax-position-y", y);
+          stage.style.setProperty("--parallax-position-y", y);
           return;
         }
 

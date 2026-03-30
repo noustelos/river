@@ -1288,6 +1288,15 @@ nav a:focus-visible,
   will-change: auto;
   transform: none;
   background-position: center var(--parallax-position-y, 50%);
+  filter: none;
+  opacity: 0;
+}
+
+.is-ipados .scroll-panel-gorge-parallax .scroll-panel-stage {
+  border-radius: 0;
+  background-image: var(--panel-image);
+  background-size: cover;
+  background-position: center var(--parallax-position-y, 50%);
 }
 
 .scroll-panel-gorge-parallax .scroll-panel-stage {
@@ -1967,6 +1976,63 @@ nav a:focus-visible,
   text-align: left;
 }
 
+.footer-3d-wrap {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+
+.footer-3d-tagline {
+  margin: 4px 0 0;
+  align-self: start;
+  justify-self: start;
+  max-width: 100%;
+  font-family: "Noto Serif", serif;
+  font-size: clamp(1.57rem, 5.51vw, 3.04rem);
+  line-height: 0.95;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #f4f5f7;
+  transform: perspective(1000px) rotateX(24deg) rotateZ(-0.8deg);
+  transform-origin: left center;
+  text-shadow:
+    #ffffff 0.006em 0.006em 0.007em,
+    #a8adb3 1px 1px 1px,
+    #a8adb3 1px 2px 1px,
+    #a8adb3 1px 3px 1px,
+    #a8adb3 1px 4px 1px,
+    #a8adb3 1px 5px 1px,
+    #a8adb3 1px 6px 1px,
+    rgba(18, 25, 28, 0.24) 1px 10px 7px,
+    rgba(18, 25, 28, 0.2) 1px 14px 14px,
+    rgba(18, 25, 28, 0.18) 1px 18px 24px;
+  transition: transform 0.28s ease, text-shadow 0.28s ease;
+}
+
+.footer-3d-tagline:hover {
+  transform: perspective(1000px) rotateX(24deg) rotateZ(-0.8deg) translateY(-6px);
+  text-shadow:
+    #ffffff 0.006em 0.006em 0.007em,
+    #a8adb3 1px 1px 1px,
+    #a8adb3 1px 2px 1px,
+    #a8adb3 1px 3px 1px,
+    #a8adb3 1px 4px 1px,
+    #a8adb3 1px 5px 1px,
+    #a8adb3 1px 6px 1px,
+    rgba(18, 25, 28, 0.32) 1px 18px 16px,
+    rgba(18, 25, 28, 0.24) 1px 24px 24px,
+    rgba(18, 25, 28, 0.2) 1px 30px 38px;
+}
+
+.footer-3d-subline {
+  margin: -5px 0 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.94rem;
+  line-height: 1.3;
+  color: #24353c;
+}
+
 .footer-title {
   color: #1b2a31;
   text-transform: uppercase;
@@ -2079,6 +2145,13 @@ nav a:focus-visible,
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: #506069;
+}
+
+@media (max-width: 640px) {
+  .footer-3d-tagline {
+    font-size: clamp(1.28rem, 7.79vw, 2.09rem);
+    letter-spacing: 0.04em;
+  }
 }
 
 .footer-system .dot {
