@@ -2147,6 +2147,7 @@ nav a:focus-visible,
 
   .scroll-panel-gorge-parallax .scroll-panel-stage {
     height: clamp(240px, 47vh, 420px);
+    min-height: 0;
   }
 
 }
