@@ -1263,18 +1263,23 @@ nav a:focus-visible,
   background-size: cover;
   background-position: center;
   transform: none;
+  filter: contrast(1.12) saturate(1.18) brightness(1.04);
 }
 
 .scroll-panel-gorge-parallax .scroll-panel-media {
-  inset: -20% 0;
+  inset: -30% 0;
   background-attachment: scroll;
   background-position: center center;
-  transform: translate3d(0, var(--parallax-shift, 0px), 0) scale(1.08);
+  transform: translate3d(0, var(--parallax-shift, 0px), 0) scale(1.05);
   will-change: transform;
 }
 
 .is-ipados .scroll-panel-gorge-parallax .scroll-panel-media {
+  inset: 0;
   background-attachment: scroll;
+  will-change: auto;
+  transform: none;
+  background-position: center var(--parallax-position-y, 50%);
 }
 
 .scroll-panel-gorge-parallax .scroll-panel-stage {
@@ -1313,6 +1318,23 @@ nav a:focus-visible,
 
 .scroll-panel-no-gradient .scroll-panel-stage::after {
   background: none;
+}
+
+/* Global HDR filter – content images */
+.hero-backdrop img,
+.story-media img,
+.gorge-side-photo img,
+.time-card img,
+.supporting-visual img,
+.gallery img,
+.route-image-wrap img {
+  filter: contrast(1.12) saturate(1.18) brightness(1.04);
+}
+
+.scroll-panel-hdr .scroll-panel-stage::after {
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 38%, rgba(0,0,0,0.28) 100%),
+    linear-gradient(180deg, rgba(10, 14, 13, 0.08) 0%, rgba(10, 14, 13, 0.18) 48%, rgba(10, 14, 13, 0.36) 100%);
 }
 
 .scroll-panel-content,
@@ -3120,6 +3142,11 @@ nav a:focus-visible,
   .supporting-visual figcaption {
     font-size: 0.95rem;
     line-height: 1.62;
+  }
+
+  .section-highlights,
+  .gorge-highlights {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

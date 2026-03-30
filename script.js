@@ -224,7 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
       parallaxPanels.forEach(({ panel, media }) => {
         media.style.setProperty("--parallax-shift", "0px");
 
-        if (panel.classList.contains("scroll-panel-vertical-reveal")) {
+        if (isIPadOS || panel.classList.contains("scroll-panel-vertical-reveal")) {
           media.style.setProperty("--parallax-position-y", "50%");
         }
       });
@@ -266,9 +266,16 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
+        if (isIPadOS) {
+          const progress = Math.max(0, Math.min(1, (viewportHeight - rect.top) / (viewportHeight + rect.height)));
+          const positionY = 25 + progress * 50;
+          media.style.setProperty("--parallax-position-y", `${positionY.toFixed(2)}%`);
+          return;
+        }
+
         const centerDelta = (rect.top + rect.height / 2 - viewportHeight / 2) / viewportHeight;
-        const amplitude = panel.classList.contains("scroll-panel-caption") ? 100 : 140;
-        const shift = Math.max(-120, Math.min(120, centerDelta * speed * amplitude));
+        const amplitude = panel.classList.contains("scroll-panel-caption") ? 160 : 220;
+        const shift = Math.max(-180, Math.min(180, centerDelta * speed * amplitude));
         media.style.setProperty("--parallax-shift", `${shift.toFixed(1)}px`);
       });
     };
