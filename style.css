@@ -1,5 +1,6 @@
 :root {
   --gorge-green: #2d5d46;
+  --hero-btn-green: #236f45;
   --stone-gray: #5c6661;
   --river-teal: #3f7f7a;
   --olive-earth: #6e7f46;
@@ -187,6 +188,11 @@ nav a,
   border: 0;
   cursor: pointer;
   transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+nav a.is-current {
+  color: var(--hero-btn-green);
+  opacity: 1;
 }
 
 nav a:hover,
