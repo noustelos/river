@@ -2027,6 +2027,7 @@ nav a:focus-visible,
   margin: 4px 0 0;
   align-self: start;
   justify-self: start;
+  display: inline-block;
   max-width: 100%;
   user-select: none;
   -webkit-user-select: none;
@@ -2047,6 +2048,11 @@ nav a:focus-visible,
     rgba(18, 25, 28, 0.16) 1px 8px 7px,
     rgba(18, 25, 28, 0.12) 1px 12px 13px;
   transition: transform 0.28s ease, text-shadow 0.28s ease;
+}
+
+.footer a.footer-3d-tagline {
+  color: #f4f5f7;
+  margin-bottom: 0;
 }
 
 .footer-3d-tagline:hover {
