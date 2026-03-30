@@ -2529,6 +2529,10 @@ nav a:focus-visible,
 }
 
 @media (max-width: 900px) {
+  img {
+    border-radius: 0 !important;
+  }
+
   .site-header {
     background: rgba(247, 248, 245, 0.92);
   }
