@@ -67,6 +67,7 @@ body {
   font-size: 18px;
   line-height: 1.7;
   color: var(--text-main);
+  overflow-x: hidden;
   overflow-x: clip;
   background:
     radial-gradient(circle at 12% 0%, rgba(201, 169, 92, 0.14) 0%, transparent 32%),
@@ -413,7 +414,7 @@ nav a:focus-visible,
   color: #f6fbf8;
 }
 
-.hero-proof-item span {
+.hero-proof-item > span {
   display: block;
   margin-top: 6px;
   font-size: 0.82rem;
@@ -1614,6 +1615,10 @@ nav a:focus-visible,
 
 .planner-card {
   padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
 }
 
 .planner-card-kicker {
@@ -1627,8 +1632,12 @@ nav a:focus-visible,
 }
 
 .planner-card h3 {
-  margin: 8px 0 6px;
+  margin: 0;
   font-size: 1.1rem;
+}
+
+.planner-card p {
+  margin: 0;
 }
 
 .planner-card p:last-child {
@@ -1711,6 +1720,24 @@ nav a:focus-visible,
   margin-top: 18px;
   color: var(--text-muted);
   font-size: 0.9rem;
+}
+
+.is-ipados .planner-card,
+.is-ipados .planner-choice {
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 16px 34px rgba(16, 26, 24, 0.12);
+}
+
+.is-ipados .planner-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -8px;
+}
+
+.is-ipados .planner-grid > .planner-card {
+  flex: 1 1 calc(50% - 16px);
+  min-width: 240px;
+  margin: 0 8px 16px;
 }
 
 .routes-section {
@@ -2275,6 +2302,17 @@ nav a:focus-visible,
 @media (max-width: 640px) {
   .hero-action-note {
     font-size: 0.86rem;
+  }
+
+  .is-ipados .planner-grid {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .is-ipados .planner-grid > .planner-card {
+    flex-basis: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .planner-grid,
@@ -3020,6 +3058,7 @@ nav a:focus-visible,
 
   .hero {
     height: auto;
+    min-height: 100vh;
     min-height: 100svh;
     text-align: left;
     align-items: flex-start;
@@ -3157,6 +3196,7 @@ nav a:focus-visible,
 
   .hero {
     height: auto;
+    min-height: 100vh;
     min-height: 100svh;
     padding-top: calc(124px + env(safe-area-inset-top));
     padding-bottom: calc(22px + env(safe-area-inset-bottom));
@@ -3405,6 +3445,7 @@ nav a:focus-visible,
 
   .hero {
     height: auto;
+    min-height: 100vh;
     min-height: 100dvh;
     padding-top: calc(116px + env(safe-area-inset-top));
     padding-bottom: calc(20px + env(safe-area-inset-bottom));
