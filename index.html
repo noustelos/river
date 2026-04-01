@@ -4,15 +4,64 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Φαράγγι Βουραϊκού | Παγκόσμιο Γεωπάρκο UNESCO | Vouraikos Gorge | UNESCO Global Geopark</title>
+<meta name="description" content="Σχεδίασε την επίσκεψή σου στο Φαράγγι του Βουραϊκού με διαδρομές, χάρτη, βασικές πληροφορίες, gallery και τον ιστορικό Οδοντωτό στο Παγκόσμιο Γεωπάρκο UNESCO Χελμού - Βουραϊκού.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#f7f5ef">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Φαράγγι Βουραϊκού | Vouraikos Gorge | UNESCO Global Geopark">
+<meta property="og:description" content="Discover routes, map, essential info, gallery, and the Odontotos railway for one of Greece's most striking UNESCO geopark landscapes.">
+<meta property="og:site_name" content="Vouraikos Gorge UNESCO Geopark">
+<meta property="og:locale" content="el_GR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="assets/photos/gallery_1/image_12.webp">
+<meta property="og:image:alt" content="Panoramic view of the Vouraikos Gorge limestone cliffs">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Φαράγγι Βουραϊκού | Vouraikos Gorge | UNESCO Global Geopark">
+<meta name="twitter:description" content="Plan a visit to Vouraikos Gorge with routes, map, practical tips, gallery, and the historic Odontotos railway.">
+<meta name="twitter:image" content="assets/photos/gallery_1/image_12.webp">
+<link rel="alternate" hreflang="el" href="?lang=el">
+<link rel="alternate" hreflang="en" href="?lang=en">
+<link rel="alternate" hreflang="x-default" href="?lang=el">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="assets/photos/gallery_1/responsive/image_12-1600.jpg" imagesrcset="assets/photos/gallery_1/responsive/image_12-960.jpg 960w, assets/photos/gallery_1/responsive/image_12-1600.jpg 1600w, assets/photos/gallery_1/image_12.webp 1920w" imagesizes="100vw" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
-<script>(function(){if(/iPad/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1))document.documentElement.classList.add('is-ipados');}());</script>
+<script>(function(){var params=new URLSearchParams(window.location.search);var requestedLang=params.get('lang');var storedLang='';try{storedLang=window.localStorage.getItem('vouraikos-lang')||'';}catch(error){}var preferredLang=requestedLang==='en'||requestedLang==='el'?requestedLang:(storedLang==='en'||storedLang==='el'?storedLang:(document.documentElement.lang||'el'));document.documentElement.lang=preferredLang;if(/iPad/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1))document.documentElement.classList.add('is-ipados');}());</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Φαράγγι Βουραϊκού",
+  "alternateName": "Vouraikos Gorge",
+  "description": "UNESCO geopark landscape in Achaia with the Odontotos rack railway, the E4 trail, practical visitor information, and geological heritage.",
+  "image": [
+    "assets/photos/gallery_1/image_12.webp",
+    "assets/photos/gallery_1/train_1.webp"
+  ],
+  "inLanguage": ["el", "en"],
+  "isPartOf": {
+    "@type": "Place",
+    "name": "Chelmos - Vouraikos UNESCO Global Geopark"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 38.2039,
+    "longitude": 22.1891
+  },
+  "sameAs": [
+    "https://www.unesco.org/en/iggp/chelmos-vouraikos-unesco-global-geopark-0",
+    "https://odontotos.gr/",
+    "https://discoverdiakopto.gr"
+  ]
+}
+</script>
 </head>
 
 <body>
+<a class="skip-link" href="#main-content"><span lang="el">Μετάβαση στο περιεχόμενο</span><span lang="en">Skip to content</span></a>
 
 <header class="site-header">
   <div class="container header-inner">
@@ -34,30 +83,56 @@
         <li><a href="#gallery"><span lang="el">Εικόνες</span><span lang="en">Gallery</span></a></li>
       </ul>
     </nav>
-    <a class="nav-cta" href="#experiences">
-      <span lang="el">Σχεδίασε Εμπειρία</span>
-      <span lang="en">Plan Experience</span>
+    <a class="nav-cta" href="#visit-planner" data-track="nav_plan_visit">
+      <span lang="el">Οργάνωσε Επίσκεψη</span>
+      <span lang="en">Plan Visit</span>
     </a>
     <div class="lang-switcher" aria-label="Language switcher">
-      <button type="button" data-lang="el">ΕΛ</button>
+      <button type="button" data-lang="el" data-track="lang_el">ΕΛ</button>
       <span>/</span>
-      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="en" data-track="lang_en">EN</button>
     </div>
   </div>
 </header>
 
-<main>
+<main id="main-content">
   <section id="home" class="hero">
-    <div class="hero-backdrop" aria-hidden="true">
-      <img src="assets/photos/gallery_1/image_12.webp" alt="Panoramic view of the lush Vouraikos Gorge limestone cliffs">
-    </div>
+    <picture class="hero-backdrop" aria-hidden="true">
+      <source
+        srcset="assets/photos/gallery_1/responsive/image_12-960.jpg 960w, assets/photos/gallery_1/responsive/image_12-1600.jpg 1600w"
+        sizes="100vw"
+        type="image/jpeg">
+      <img
+        src="assets/photos/gallery_1/image_12.webp"
+        alt="Panoramic view of the lush Vouraikos Gorge limestone cliffs"
+        width="1920"
+        height="1080"
+        fetchpriority="high"
+        decoding="async">
+    </picture>
     <div class="container hero-content">
       <div class="hero-copy">
         <p class="eyebrow"><span lang="el">CHELMOS - VOURAIKOS UNESCO GLOBAL GEOPARK</span><span lang="en">CHELMOS - VOURAIKOS UNESCO GLOBAL GEOPARK</span></p>
         <h1><span lang="el">Η Άγρια Ομορφιά του Βουραϊκού</span><span lang="en">The Untamed Beauty of Vouraikos</span></h1>
+        <p class="hero-lead"><span lang="el">Κλείσε θέση στον Οδοντωτό, σύγκρινε τη διαδρομή με το Ε4 και δες άμεσα πότε, από πού και με τι εξοπλισμό αξίζει να ξεκινήσεις.</span><span lang="en">Book the Odontotos, compare it with the E4 trail, and see at a glance when to go, where to start, and what to bring.</span></p>
         <div class="hero-actions">
-          <a class="btn" href="#experiences"><span lang="el">Ανακάλυψε τις Διαδρομές</span><span lang="en">Discover the Routes</span></a>
-          <a class="btn btn-secondary" href="#gorge-map"><span lang="el">Δες τον Χάρτη</span><span lang="en">View Map</span></a>
+          <a class="btn" href="https://odontotos.gr/" target="_blank" rel="noopener noreferrer" data-track="hero_book_train"><span lang="el">Κλείσε τον Οδοντωτό</span><span lang="en">Book the railway</span></a>
+          <a class="btn btn-secondary" href="#visit-planner" data-track="hero_plan_visit"><span lang="el">Οργάνωσε την επίσκεψη</span><span lang="en">Plan your visit</span></a>
+        </div>
+        <p class="hero-action-note"><span lang="el">Σαββατοκύριακα και αργίες οι θέσεις εξαντλούνται γρήγορα. Για πεζοπορία Ε4, έλεγξε καιρό και εξοπλισμό πριν ξεκινήσεις.</span><span lang="en">Seats can sell out quickly on weekends and holidays. For the E4 hike, check weather and gear before you start.</span></p>
+        <div class="hero-proof" aria-label="Visitor highlights">
+          <article class="hero-proof-item">
+            <strong><span lang="el">UNESCO</span><span lang="en">UNESCO</span></strong>
+            <span><span lang="el">προστατευόμενο τοπίο</span><span lang="en">protected landscape</span></span>
+          </article>
+          <article class="hero-proof-item">
+            <strong>2</strong>
+            <span><span lang="el">τρόποι εξερεύνησης</span><span lang="en">ways to explore</span></span>
+          </article>
+          <article class="hero-proof-item">
+            <strong>49</strong>
+            <span><span lang="el">γέφυρες και περάσματα</span><span lang="en">bridges and crossings</span></span>
+          </article>
         </div>
       </div>
     </div>
@@ -92,6 +167,141 @@
           <span lang="en">Gorge Temperature</span>
         </p>
         <strong id="hero-weather-temp" aria-live="polite">--°C</strong>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit-planner" class="section section-narrow planner-section" aria-labelledby="planner-title">
+    <div class="container planner-shell">
+      <div class="section-heading planner-heading">
+        <p class="section-label"><span lang="el">Visit Planner</span><span lang="en">Visit Planner</span></p>
+        <h2 id="planner-title">
+          <span lang="el">Οργάνωσε την επίσκεψή σου πριν μπεις στο φαράγγι</span>
+          <span lang="en">Plan the visit before you step into the gorge</span>
+        </h2>
+        <p>
+          <span lang="el">Κράτηση για Οδοντωτό, οδηγίες, σύγκριση Ε4 και τρένου, και γρήγορα tips για εποχή, αφετηρία και ασφάλεια.</span>
+          <span lang="en">Odontotos booking, directions, route comparison, and quick tips on season, starting points, and safety.</span>
+        </p>
+      </div>
+
+      <div class="planner-signal-bar" aria-label="Planning priorities">
+        <span class="planner-signal-pill"><span lang="el">Κλείσε εισιτήρια 48 ώρες νωρίτερα</span><span lang="en">Book tickets 48 hours ahead</span></span>
+        <span class="planner-signal-pill"><span lang="el">Ο Οδοντωτός είναι η οικογενειακή επιλογή</span><span lang="en">The railway is the family-friendly option</span></span>
+        <span class="planner-signal-pill"><span lang="el">Το Ε4 θέλει νερό και σωστά παπούτσια</span><span lang="en">The E4 needs water and proper footwear</span></span>
+      </div>
+
+      <div class="planner-actions">
+        <a class="btn" href="https://odontotos.gr/" target="_blank" rel="noopener noreferrer" data-track="planner_book_train">
+          <span lang="el">Κλείσε θέση στον Οδοντωτό</span>
+          <span lang="en">Book the Odontotos</span>
+        </a>
+        <a class="btn btn-secondary planner-btn-secondary" href="https://www.google.com/maps/dir/?api=1&destination=38.2039,22.1891" target="_blank" rel="noopener noreferrer" data-track="planner_get_directions">
+          <span lang="el">Οδηγίες για το φαράγγι</span>
+          <span lang="en">Get directions</span>
+        </a>
+        <a class="planner-anchor-link" href="#experiences" data-track="planner_compare_routes">
+          <span lang="el">Σύγκρινε πρώτα τις διαδρομές</span>
+          <span lang="en">Compare the routes first</span>
+        </a>
+      </div>
+
+      <div class="planner-grid">
+        <article class="planner-card">
+          <p class="planner-card-kicker"><span lang="el">Ιδανική Περίοδος</span><span lang="en">Best Window</span></p>
+          <h3><span lang="el">Μάιος έως Οκτώβριος</span><span lang="en">May through October</span></h3>
+          <p><span lang="el">Άνοιξη για νερά και καταρράκτες, φθινόπωρο για χρώμα και πιο ήπιες θερμοκρασίες.</span><span lang="en">Spring for water flow and waterfalls, autumn for color and milder temperatures.</span></p>
+        </article>
+        <article class="planner-card">
+          <p class="planner-card-kicker"><span lang="el">Αφετηρία</span><span lang="en">Starting Points</span></p>
+          <h3><span lang="el">Διακοπτό ή Καλάβρυτα</span><span lang="en">Diakopto or Kalavryta</span></h3>
+          <p><span lang="el">Για τρένο ξεκίνα από Διακοπτό. Για πεζοπορία Ε4, πρακτικά σημεία είναι τα Καλάβρυτα και η Κάτω Ζαχλωρού.</span><span lang="en">For the railway, start at Diakopto. For the E4 hike, Kalavryta and Kato Zachlorou are the most practical starting points.</span></p>
+        </article>
+        <article class="planner-card">
+          <p class="planner-card-kicker"><span lang="el">Εξοπλισμός</span><span lang="en">What to Bring</span></p>
+          <h3><span lang="el">Νερό, παπούτσια, ελαφρύ jacket</span><span lang="en">Water, hiking shoes, light jacket</span></h3>
+          <p><span lang="el">Για το Ε4 υπολόγισε τουλάχιστον 2 λίτρα νερό και σταθερό κράτημα. Το φαράγγι αλλάζει θερμοκρασία γρήγορα.</span><span lang="en">For the E4, plan for at least 2 liters of water and solid footwear. Gorge temperatures can shift quickly.</span></p>
+        </article>
+        <article class="planner-card">
+          <p class="planner-card-kicker"><span lang="el">Τι Ταιριάζει Σε Σένα</span><span lang="en">Best Match</span></p>
+          <h3><span lang="el">Θέαμα ή πλήρης διάσχιση</span><span lang="en">Scenic ride or full crossing</span></h3>
+          <p><span lang="el">Ο Οδοντωτός είναι η εύκολη, οικογενειακή επιλογή. Το Ε4 είναι η σωστή διαδρομή για όσους θέλουν πλήρη επαφή με το τοπίο.</span><span lang="en">The railway is the easy, family-friendly option. The E4 is the right choice if you want full contact with the landscape.</span></p>
+        </article>
+      </div>
+
+      <div class="planner-compare" aria-label="Route comparison">
+        <div class="section-heading planner-compare-heading">
+          <h3><span lang="el">Γρήγορη σύγκριση εμπειριών</span><span lang="en">Quick route comparison</span></h3>
+          <p><span lang="el">Δες καθαρά ποια επιλογή ταιριάζει στον χρόνο, την αντοχή και το είδος της επίσκεψης που θέλεις.</span><span lang="en">See clearly which option fits your time, stamina, and the kind of visit you want.</span></p>
+        </div>
+        <div class="planner-compare-grid">
+          <article class="planner-choice">
+            <div class="planner-choice-head">
+              <div>
+                <p class="route-card-eyebrow"><span lang="el">Εύκολη Επιλογή</span><span lang="en">Easy Option</span></p>
+                <h3><span lang="el">Οδοντωτός</span><span lang="en">Odontotos Railway</span></h3>
+              </div>
+              <span class="route-level route-level-easy"><span lang="el">Ήπιο</span><span lang="en">Easy</span></span>
+            </div>
+            <p><span lang="el">Ιδανικό για οικογένειες, φωτογραφία, σύντομη εκδρομή και πρώτη γνωριμία με το φαράγγι.</span><span lang="en">Ideal for families, photography, short day trips, and a first encounter with the gorge.</span></p>
+            <dl class="planner-stats">
+              <div>
+                <dt><span lang="el">Διάρκεια</span><span lang="en">Duration</span></dt>
+                <dd><span lang="el">περίπου 1 ώρα</span><span lang="en">about 1 hour</span></dd>
+              </div>
+              <div>
+                <dt><span lang="el">Αφετηρία</span><span lang="en">Start</span></dt>
+                <dd>Diakopto</dd>
+              </div>
+              <div>
+                <dt><span lang="el">Ιδανικό για</span><span lang="en">Best for</span></dt>
+                <dd><span lang="el">θέαμα και άνεση</span><span lang="en">scenery and comfort</span></dd>
+              </div>
+              <div>
+                <dt><span lang="el">Σημείωση</span><span lang="en">Note</span></dt>
+                <dd><span lang="el">κράτηση νωρίς</span><span lang="en">book early</span></dd>
+              </div>
+            </dl>
+            <a class="route-more" href="https://odontotos.gr/" target="_blank" rel="noopener noreferrer" data-track="planner_choice_book_tickets">
+              <span lang="el">Κλείσε θέση</span>
+              <span lang="en">Book tickets</span>
+            </a>
+          </article>
+
+          <article class="planner-choice">
+            <div class="planner-choice-head">
+              <div>
+                <p class="route-card-eyebrow"><span lang="el">Πλήρης Εμπειρία</span><span lang="en">Full Immersion</span></p>
+                <h3><span lang="el">Μονοπάτι Ε4</span><span lang="en">E4 Trail</span></h3>
+              </div>
+              <span class="route-level route-level-medium"><span lang="el">Απαιτητικό</span><span lang="en">Moderate</span></span>
+            </div>
+            <p><span lang="el">Η σωστή επιλογή για όσους θέλουν να βιώσουν το ανάγλυφο, τα περάσματα και το οικοσύστημα με ρυθμό πεζοπορίας.</span><span lang="en">The right option for visitors who want to experience the terrain, crossings, and ecosystem at hiking pace.</span></p>
+            <dl class="planner-stats">
+              <div>
+                <dt><span lang="el">Διάρκεια</span><span lang="en">Duration</span></dt>
+                <dd><span lang="el">5 έως 6 ώρες</span><span lang="en">5 to 6 hours</span></dd>
+              </div>
+              <div>
+                <dt><span lang="el">Αφετηρία</span><span lang="en">Start</span></dt>
+                <dd><span lang="el">Καλάβρυτα / Ζαχλωρού</span><span lang="en">Kalavryta / Zachlorou</span></dd>
+              </div>
+              <div>
+                <dt><span lang="el">Ιδανικό για</span><span lang="en">Best for</span></dt>
+                <dd><span lang="el">πεζοπόρους</span><span lang="en">hikers</span></dd>
+              </div>
+              <div>
+                <dt><span lang="el">Σημείωση</span><span lang="en">Note</span></dt>
+                <dd><span lang="el">νερό και εξοπλισμός</span><span lang="en">water and gear</span></dd>
+              </div>
+            </dl>
+            <a class="route-more" href="#drawer-e4" data-drawer-target="drawer-e4" data-track="planner_choice_open_e4">
+              <span lang="el">Δες λεπτομέρειες Ε4</span>
+              <span lang="en">View E4 details</span>
+            </a>
+          </article>
+        </div>
+        <p class="planner-note"><span lang="el">Έλεγξε δρομολόγια, καιρό και φυσική κατάσταση πριν ξεκινήσεις. Το σωστό planning εδώ αλλάζει όλη την εμπειρία.</span><span lang="en">Check schedules, weather, and fitness level before you start. Proper planning changes the entire experience here.</span></p>
       </div>
     </div>
   </section>
@@ -134,17 +344,26 @@
       </div>
       <div class="time-flows-media">
         <figure class="time-card time-card-large">
-          <img src="assets/photos/gallery_1/image_3.webp" alt="Οδοντωτός και βράχια του Βουραϊκού | Odontotos and Vouraikos rock walls">
+          <picture>
+            <source srcset="assets/photos/gallery_1/responsive/image_3-960.jpg 960w, assets/photos/gallery_1/responsive/image_3-1600.jpg 1600w" sizes="(max-width: 900px) calc(100vw - 36px), 34vw" type="image/jpeg">
+            <img src="assets/photos/gallery_1/image_3.webp" alt="Οδοντωτός και βράχια του Βουραϊκού | Odontotos and Vouraikos rock walls" width="2560" height="1440" loading="lazy" decoding="async">
+          </picture>
           <figcaption>
             <span lang="el">Στενά περάσματα όπου πέτρα και νερό κινούνται στον ίδιο ρυθμό.</span>
             <span lang="en">Narrow passages where stone and water move in the same rhythm.</span>
           </figcaption>
         </figure>
         <figure class="time-card">
-          <img src="assets/photos/gallery_1/image_6.webp" alt="Διαδρομή μέσα στη φύση του φαραγγιού | Route through the gorge nature">
+          <picture>
+            <source srcset="assets/photos/gallery_1/responsive/image_6-960.jpg 960w, assets/photos/gallery_1/responsive/image_6-1600.jpg 1600w" sizes="(max-width: 900px) calc(100vw - 36px), 17vw" type="image/jpeg">
+            <img src="assets/photos/gallery_1/image_6.webp" alt="Διαδρομή μέσα στη φύση του φαραγγιού | Route through the gorge nature" width="2560" height="1440" loading="lazy" decoding="async">
+          </picture>
         </figure>
         <figure class="time-card">
-          <img src="assets/photos/gallery_1/image_8.webp" alt="Πέρασμα με βλάστηση και βραχώδεις σχηματισμούς | Passage with vegetation and rocky formations">
+          <picture>
+            <source srcset="assets/photos/gallery_1/responsive/image_8-960.jpg 960w, assets/photos/gallery_1/responsive/image_8-1600.jpg 1600w" sizes="(max-width: 900px) calc(100vw - 36px), 17vw" type="image/jpeg">
+            <img src="assets/photos/gallery_1/image_8.webp" alt="Πέρασμα με βλάστηση και βραχώδεις σχηματισμούς | Passage with vegetation and rocky formations" width="2560" height="1440" loading="lazy" decoding="async">
+          </picture>
         </figure>
       </div>
     </div>
@@ -279,7 +498,7 @@
       </div>
     </div>
 
-    <div class="scroll-panel scroll-panel-image-only scroll-panel-full-bleed scroll-panel-gorge-parallax" data-parallax-speed="1" style="--panel-image:url('assets/photos/gorge_photos/gorge4.webp');" aria-label="Άποψη του φαραγγιού πριν την ενότητα Παυσανία | Gorge view before the Pausanias section">
+    <div class="scroll-panel scroll-panel-image-only scroll-panel-full-bleed scroll-panel-gorge-parallax" data-parallax-speed="1" data-panel-image="assets/photos/gorge_photos/gorge4.webp" aria-label="Άποψη του φαραγγιού πριν την ενότητα Παυσανία | Gorge view before the Pausanias section">
       <div class="scroll-panel-stage">
         <div class="scroll-panel-media" aria-hidden="true"></div>
       </div>
@@ -386,7 +605,7 @@
 
     </div>
 
-    <div class="scroll-panel scroll-panel-image-only scroll-panel-full-bleed scroll-panel-gorge-parallax scroll-panel-hdr" data-parallax-speed="1" style="--panel-image:url('assets/photos/gorge_photos/gorge2.webp');" aria-label="Άποψη του φαραγγιού πριν την ενότητα Περιηγητές | Gorge view before the travellers section">
+    <div class="scroll-panel scroll-panel-image-only scroll-panel-full-bleed scroll-panel-gorge-parallax scroll-panel-hdr" data-parallax-speed="1" data-panel-image="assets/photos/gorge_photos/gorge2.webp" aria-label="Άποψη του φαραγγιού πριν την ενότητα Περιηγητές | Gorge view before the travellers section">
       <div class="scroll-panel-stage">
         <div class="scroll-panel-media" aria-hidden="true"></div>
       </div>
@@ -468,7 +687,7 @@
     </div>
   </section>
 
-  <section class="scroll-panel scroll-panel-caption scroll-panel-gorge-parallax scroll-panel-vertical-reveal" data-parallax-speed="1" style="--panel-image:url('assets/photos/gallery_1/image_9.webp');">
+  <section class="scroll-panel scroll-panel-caption scroll-panel-gorge-parallax scroll-panel-vertical-reveal" data-parallax-speed="1" data-panel-image="assets/photos/gallery_1/image_9.webp">
     <div class="scroll-panel-stage">
       <div class="scroll-panel-media" aria-hidden="true"></div>
       <div class="image-break-caption">
@@ -481,7 +700,10 @@
   <section id="odontotos" class="section story-section alt-tone">
     <div class="container story-grid reverse">
       <div class="story-media">
-        <img src="assets/photos/gallery_1/train_1.webp" alt="Ο Οδοντωτός μέσα στο φαράγγι του Βουραϊκού | The Odontotos railway inside the Vouraikos Gorge">
+        <picture>
+          <source srcset="assets/photos/gallery_1/responsive/train_1-960.jpg 960w, assets/photos/gallery_1/responsive/train_1-1600.jpg 1600w" sizes="(max-width: 900px) calc(100vw - 36px), 50vw" type="image/jpeg">
+          <img src="assets/photos/gallery_1/train_1.webp" alt="Ο Οδοντωτός μέσα στο φαράγγι του Βουραϊκού | The Odontotos railway inside the Vouraikos Gorge" width="2560" height="1440" loading="lazy" decoding="async">
+        </picture>
       </div>
       <div class="story-copy">
         <p class="section-label">
@@ -622,7 +844,7 @@
     </div>
   </section>
 
-  <section class="scroll-panel scroll-panel-quote scroll-panel-no-gradient" style="--panel-image:url('assets/photos/gallery_1/image_7.webp');">
+  <section class="scroll-panel scroll-panel-quote scroll-panel-no-gradient" data-panel-image="assets/photos/gallery_1/image_7.webp">
     <div class="scroll-panel-stage">
       <div class="scroll-panel-media" aria-hidden="true"></div>
       <div class="container scroll-panel-content">
@@ -799,7 +1021,10 @@
         </details>
       </div>
       <div class="story-media">
-        <img src="assets/photos/gallery_1/image_10.webp" alt="Τοπίο του Γεωπάρκου Χελμού Βουραϊκού | Landscape of the Chelmos Vouraikos Geopark">
+        <picture>
+          <source srcset="assets/photos/gallery_1/responsive/image_10-960.jpg 960w, assets/photos/gallery_1/responsive/image_10-1600.jpg 1600w" sizes="(max-width: 900px) calc(100vw - 36px), 50vw" type="image/jpeg">
+          <img src="assets/photos/gallery_1/image_10.webp" alt="Τοπίο του Γεωπάρκου Χελμού Βουραϊκού | Landscape of the Chelmos Vouraikos Geopark" width="2560" height="1440" loading="lazy" decoding="async">
+        </picture>
         <div class="official-source-card">
           <p class="official-source-text">
             <span lang="el">Σύμφωνα με την επίσημη σελίδα της UNESCO, το Chelmos-Vouraikos είναι ενταγμένο στο Παγκόσμιο Δίκτυο Γεωπάρκων της UNESCO.</span>
@@ -811,7 +1036,7 @@
     </div>
   </section>
 
-  <section class="scroll-panel scroll-panel-caption scroll-panel-gorge-parallax" data-parallax-speed="1" style="--panel-image:url('assets/photos/gallery_1/image_8.webp');">
+  <section class="scroll-panel scroll-panel-caption scroll-panel-gorge-parallax" data-parallax-speed="1" data-panel-image="assets/photos/gallery_1/image_8.webp">
     <div class="scroll-panel-stage">
       <div class="scroll-panel-media" aria-hidden="true"></div>
       <div class="image-break-caption">
@@ -833,7 +1058,10 @@
       <div class="route-grid">
         <article class="route-card">
           <div class="route-image-wrap">
-            <img src="assets/photos/gallery_1/image_6.webp" alt="Τμήμα του Ε4 μέσα στο φυσικό περιβάλλον του Βουραϊκού | E4 segment inside the natural landscape of Vouraikos">
+            <picture>
+              <source srcset="assets/photos/gallery_1/responsive/image_6-960.jpg 960w, assets/photos/gallery_1/responsive/image_6-1600.jpg 1600w" sizes="(max-width: 900px) calc(100vw - 36px), (max-width: 1200px) calc(50vw - 40px), 280px" type="image/jpeg">
+              <img src="assets/photos/gallery_1/image_6.webp" alt="Τμήμα του Ε4 μέσα στο φυσικό περιβάλλον του Βουραϊκού | E4 segment inside the natural landscape of Vouraikos" width="2560" height="1440" loading="lazy" decoding="async">
+            </picture>
           </div>
           <div class="route-content">
             <p class="route-card-eyebrow"><span lang="el">Κύρια Διαδρομή</span><span lang="en">Core Route</span></p>
@@ -854,7 +1082,10 @@
         </article>
         <article class="route-card">
           <div class="route-image-wrap">
-            <img src="assets/photos/gallery_1/image_4.webp" alt="Πεζοπορική διαδρομή κοντά στο ποτάμι | Riverside hiking trail inside the gorge">
+            <picture>
+              <source srcset="assets/photos/gallery_1/responsive/image_4-960.jpg 960w, assets/photos/gallery_1/responsive/image_4-1600.jpg 1600w" sizes="(max-width: 900px) calc(100vw - 36px), (max-width: 1200px) calc(50vw - 40px), 280px" type="image/jpeg">
+              <img src="assets/photos/gallery_1/image_4.webp" alt="Πεζοπορική διαδρομή κοντά στο ποτάμι | Riverside hiking trail inside the gorge" width="2560" height="1440" loading="lazy" decoding="async">
+            </picture>
           </div>
           <div class="route-content">
             <p class="route-card-eyebrow"><span lang="el">Απαιτητική Πορεία</span><span lang="en">Challenge Route</span></p>
@@ -875,7 +1106,10 @@
         </article>
         <article class="route-card">
           <div class="route-image-wrap">
-            <img src="assets/photos/gallery_1/image_9.webp" alt="Πανοραμική θέα της ορεινής διαδρομής | Panoramic mountain route view">
+            <picture>
+              <source srcset="assets/photos/gallery_1/responsive/image_9-960.jpg 960w, assets/photos/gallery_1/responsive/image_9-1600.jpg 1600w" sizes="(max-width: 900px) calc(100vw - 36px), (max-width: 1200px) calc(50vw - 40px), 280px" type="image/jpeg">
+              <img src="assets/photos/gallery_1/image_9.webp" alt="Πανοραμική θέα της ορεινής διαδρομής | Panoramic mountain route view" width="2560" height="1440" loading="lazy" decoding="async">
+            </picture>
           </div>
           <div class="route-content">
             <p class="route-card-eyebrow"><span lang="el">Κλασική Διάσχιση</span><span lang="en">Classic Crossing</span></p>
@@ -896,7 +1130,10 @@
         </article>
         <article class="route-card">
           <div class="route-image-wrap">
-            <img src="assets/photos/gallery_1/image_10.webp" alt="Ήπια διαδρομή προς καταρρακτώδες πέρασμα | Easy route with waterfall scenery">
+            <picture>
+              <source srcset="assets/photos/gallery_1/responsive/image_10-960.jpg 960w, assets/photos/gallery_1/responsive/image_10-1600.jpg 1600w" sizes="(max-width: 900px) calc(100vw - 36px), (max-width: 1200px) calc(50vw - 40px), 280px" type="image/jpeg">
+              <img src="assets/photos/gallery_1/image_10.webp" alt="Ήπια διαδρομή προς καταρρακτώδες πέρασμα | Easy route with waterfall scenery" width="2560" height="1440" loading="lazy" decoding="async">
+            </picture>
           </div>
           <div class="route-content">
             <p class="route-card-eyebrow"><span lang="el">Σύντομη Παράκαμψη</span><span lang="en">Scenic Detour</span></p>
@@ -1070,7 +1307,7 @@
         </details>
       </div>
 
-      <section class="scroll-panel scroll-panel-image-only scroll-panel-full-bleed scroll-panel-spaced-top scroll-panel-gorge-parallax" data-parallax-speed="1" style="--panel-image:url('assets/photos/gallery_1/image_10.webp');" aria-label="Vouraikos hiking full width image">
+      <section class="scroll-panel scroll-panel-image-only scroll-panel-full-bleed scroll-panel-spaced-top scroll-panel-gorge-parallax" data-parallax-speed="1" data-panel-image="assets/photos/gallery_1/image_10.webp" aria-label="Vouraikos hiking full width image">
         <div class="scroll-panel-stage">
           <div class="scroll-panel-media" aria-hidden="true"></div>
         </div>
@@ -1301,7 +1538,10 @@
         </div>
       </div>
       <figure class="essentials-map-card">
-        <img src="assets/photos/gallery_1/image_11.webp" alt="Topographic style visual of the Vouraikos landscape">
+        <picture>
+          <source srcset="assets/photos/gallery_1/responsive/image_11-960.jpg 960w, assets/photos/gallery_1/responsive/image_11-1600.jpg 1600w" sizes="(max-width: 900px) calc(100vw - 36px), 38vw" type="image/jpeg">
+          <img src="assets/photos/gallery_1/image_11.webp" alt="Topographic style visual of the Vouraikos landscape" width="2560" height="1920" loading="lazy" decoding="async">
+        </picture>
         <figcaption>
           <p><span lang="el">Συντεταγμένες</span><span lang="en">Coordinates</span></p>
           <strong>38.2039° N, 22.1891° E</strong>
@@ -1319,27 +1559,60 @@
         </h2>
       </div>
       <div class="gallery">
-        <img src="assets/photos/gallery_1/image_1.webp" alt="Πανόραμα του Βουραϊκού | Vouraikos panorama">
-        <img src="assets/photos/gallery_1/image_2.jpg" alt="Τοπίο και βράχια του φαραγγιού | Gorge landscape and rock faces">
-        <img src="assets/photos/gallery_1/image_3.webp" alt="Οδοντωτός στο φυσικό τοπίο | Railway within the landscape">
-        <img src="assets/photos/gallery_1/image_4.webp" alt="Ροή του νερού στον Βουραϊκό | River flow in Vouraikos">
-        <img src="assets/photos/gallery_1/image_5.webp" alt="Γεωλογικές υφές στο φαράγγι | Geological textures inside the gorge">
-        <img src="assets/photos/gallery_1/image_6.webp" alt="Διαδρομή μέσα στο φυσικό περιβάλλον | Route through the natural environment">
-        <img src="assets/photos/gallery_1/image_7.webp" alt="Ατμοσφαιρική εικόνα του τοπίου | Atmospheric landscape image">
-        <img src="assets/photos/gallery_1/image_8.webp" alt="Απόκρημνα περάσματα και βλάστηση | Steep passages and vegetation">
-        <img src="assets/photos/gallery_1/image_9.webp" alt="Κινηματογραφική θέα του γεωπάρκου | Cinematic view of the geopark">
-        <img src="assets/photos/gallery_1/image_10.webp" alt="Λεπτομέρειες του τοπίου του Βουραϊκού | Landscape details of Vouraikos">
-        <img src="assets/photos/gallery_1/image_11.webp" alt="Ορεινή προοπτική του τοπίου | Mountain perspective of the landscape">
-        <img src="assets/photos/gallery_1/image_12.webp" alt="Σκηνή από το εσωτερικό του φαραγγιού | Interior view of the gorge">
-        <img src="assets/photos/gallery_1/train_1.webp" alt="Ο Οδοντωτός μέσα στο φαράγγι | The Odontotos in the gorge">
+        <button class="gallery-card gallery-card-4-3" type="button" data-lightbox-index="0" aria-label="Άνοιγμα φωτογραφίας: Πανόραμα του Βουραϊκού | Open photo: Vouraikos panorama">
+          <picture>
+            <source srcset="assets/photos/gallery_1/responsive/image_1-960.jpg 960w, assets/photos/gallery_1/responsive/image_1-1600.jpg 1600w" sizes="(max-width: 640px) calc(100vw - 36px), (max-width: 1100px) calc(50vw - 40px), 320px" type="image/jpeg">
+            <img src="assets/photos/gallery_1/image_1.webp" alt="Πανόραμα του Βουραϊκού | Vouraikos panorama" width="2560" height="1920" loading="lazy" decoding="async">
+          </picture>
+        </button>
+        <button class="gallery-card" type="button" data-lightbox-index="3" aria-label="Άνοιγμα φωτογραφίας: Ροή του νερού στον Βουραϊκό | Open photo: River flow in Vouraikos">
+          <picture>
+            <source srcset="assets/photos/gallery_1/responsive/image_4-960.jpg 960w, assets/photos/gallery_1/responsive/image_4-1600.jpg 1600w" sizes="(max-width: 640px) calc(100vw - 36px), (max-width: 1100px) calc(50vw - 40px), 320px" type="image/jpeg">
+            <img src="assets/photos/gallery_1/image_4.webp" alt="Ροή του νερού στον Βουραϊκό | River flow in Vouraikos" width="2560" height="1440" loading="lazy" decoding="async">
+          </picture>
+        </button>
+        <button class="gallery-card" type="button" data-lightbox-index="7" aria-label="Άνοιγμα φωτογραφίας: Απόκρημνα περάσματα και βλάστηση | Open photo: Steep passages and vegetation">
+          <picture>
+            <source srcset="assets/photos/gallery_1/responsive/image_8-960.jpg 960w, assets/photos/gallery_1/responsive/image_8-1600.jpg 1600w" sizes="(max-width: 640px) calc(100vw - 36px), (max-width: 1100px) calc(50vw - 40px), 320px" type="image/jpeg">
+            <img src="assets/photos/gallery_1/image_8.webp" alt="Απόκρημνα περάσματα και βλάστηση | Steep passages and vegetation" width="2560" height="1440" loading="lazy" decoding="async">
+          </picture>
+        </button>
+        <button class="gallery-card" type="button" data-lightbox-index="12" aria-label="Άνοιγμα φωτογραφίας: Ο Οδοντωτός μέσα στο φαράγγι | Open photo: The Odontotos in the gorge">
+          <picture>
+            <source srcset="assets/photos/gallery_1/responsive/train_1-960.jpg 960w, assets/photos/gallery_1/responsive/train_1-1600.jpg 1600w" sizes="(max-width: 640px) calc(100vw - 36px), (max-width: 1100px) calc(50vw - 40px), 320px" type="image/jpeg">
+            <img src="assets/photos/gallery_1/train_1.webp" alt="Ο Οδοντωτός μέσα στο φαράγγι | The Odontotos in the gorge" width="2560" height="1440" loading="lazy" decoding="async">
+          </picture>
+        </button>
+      </div>
+      <div class="gallery-actions">
+        <button class="gallery-view-all" type="button" data-lightbox-open="0" data-track="gallery_view_all" aria-label="Δείτε όλες τις φωτογραφίες | View all photos">
+          <span lang="el">Δείτε όλες τις φωτογραφίες</span>
+          <span lang="en">View all photos</span>
+        </button>
+      </div>
+      <div class="gallery-lightbox-sources" hidden aria-hidden="true">
+        <span data-lightbox-src="assets/photos/gallery_1/image_1.webp" data-lightbox-alt="Πανόραμα του Βουραϊκού | Vouraikos panorama"></span>
+        <span data-lightbox-src="assets/photos/gallery_1/image_2.jpg" data-lightbox-alt="Τοπίο και βράχια του φαραγγιού | Gorge landscape and rock faces"></span>
+        <span data-lightbox-src="assets/photos/gallery_1/image_3.webp" data-lightbox-alt="Οδοντωτός στο φυσικό τοπίο | Railway within the landscape"></span>
+        <span data-lightbox-src="assets/photos/gallery_1/image_4.webp" data-lightbox-alt="Ροή του νερού στον Βουραϊκό | River flow in Vouraikos"></span>
+        <span data-lightbox-src="assets/photos/gallery_1/image_5.webp" data-lightbox-alt="Γεωλογικές υφές στο φαράγγι | Geological textures inside the gorge"></span>
+        <span data-lightbox-src="assets/photos/gallery_1/image_6.webp" data-lightbox-alt="Διαδρομή μέσα στο φυσικό περιβάλλον | Route through the natural environment"></span>
+        <span data-lightbox-src="assets/photos/gallery_1/image_7.webp" data-lightbox-alt="Ατμοσφαιρική εικόνα του τοπίου | Atmospheric landscape image"></span>
+        <span data-lightbox-src="assets/photos/gallery_1/image_8.webp" data-lightbox-alt="Απόκρημνα περάσματα και βλάστηση | Steep passages and vegetation"></span>
+        <span data-lightbox-src="assets/photos/gallery_1/image_9.webp" data-lightbox-alt="Κινηματογραφική θέα του γεωπάρκου | Cinematic view of the geopark"></span>
+        <span data-lightbox-src="assets/photos/gallery_1/image_10.webp" data-lightbox-alt="Λεπτομέρειες του τοπίου του Βουραϊκού | Landscape details of Vouraikos"></span>
+        <span data-lightbox-src="assets/photos/gallery_1/image_11.webp" data-lightbox-alt="Ορεινή προοπτική του τοπίου | Mountain perspective of the landscape"></span>
+        <span data-lightbox-src="assets/photos/gallery_1/image_12.webp" data-lightbox-alt="Σκηνή από το εσωτερικό του φαραγγιού | Interior view of the gorge"></span>
+        <span data-lightbox-src="assets/photos/gallery_1/train_1.webp" data-lightbox-alt="Ο Οδοντωτός μέσα στο φαράγγι | The Odontotos in the gorge"></span>
       </div>
     </div>
   </section>
 </main>
 
-<div class="lightbox" id="gallery-lightbox" hidden aria-hidden="true" role="dialog" aria-label="Image preview">
+<div class="lightbox" id="gallery-lightbox" hidden aria-hidden="true" aria-modal="true" role="dialog" aria-label="Image preview">
   <button class="lightbox-nav lightbox-nav-prev" type="button" aria-label="Previous image">‹</button>
   <button class="lightbox-close" type="button" aria-label="Close image preview">×</button>
+  <p class="lightbox-status" aria-live="polite"></p>
   <img class="lightbox-image" src="" alt="">
   <button class="lightbox-nav lightbox-nav-next" type="button" aria-label="Next image">›</button>
 </div>
@@ -1376,6 +1649,7 @@
   <div class="container footer-grid">
     <div class="footer-links">
       <p class="footer-title"><span lang="el">Ενότητες</span><span lang="en">Sections</span></p>
+      <a href="#visit-planner"><span lang="el">Οργάνωσε Επίσκεψη</span><span lang="en">Plan Visit</span></a>
       <a href="#gorge"><span lang="el">Το Φαράγγι</span><span lang="en">The Gorge</span></a>
       <a href="#odontotos"><span lang="el">Ο Οδοντωτός</span><span lang="en">The Rack Railway</span></a>
       <a href="#geopark"><span lang="el">Γεωπάρκο UNESCO</span><span lang="en">UNESCO Geopark</span></a>
@@ -1389,7 +1663,7 @@
       <div class="footer-3d-cta-row">
         <a class="btn footer-odontotos-btn" href="https://odontotos.gr/" target="_blank" rel="noopener noreferrer">odontotos.gr</a>
         <a class="footer-whp-logo" href="https://webhostpro.gr" target="_blank" rel="noopener noreferrer">
-          <img src="assets/photos/gallery_1/Logo WebHostPro.png" alt="WebHostPro logo">
+          <img src="assets/photos/gallery_1/Logo WebHostPro.png" alt="WebHostPro logo" width="1500" height="1500" loading="lazy" decoding="async">
         </a>
       </div>
     </div>

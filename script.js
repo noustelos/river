@@ -1,9 +1,92 @@
-function setLang(lang) {
-  document.documentElement.lang = lang;
+const LANG_STORAGE_KEY = "vouraikos-lang";
+
+function getSupportedLang(lang) {
+  return lang === "en" ? "en" : "el";
+}
+
+function updateLocalizedLabels(lang) {
+  const nextLang = getSupportedLang(lang);
+  const siteHeader = document.querySelector(".site-header");
+  const navToggle = document.querySelector(".nav-toggle");
+  const langSwitcher = document.querySelector(".lang-switcher");
+  const lightbox = document.querySelector("#gallery-lightbox");
+  const lightboxClose = document.querySelector(".lightbox-close");
+  const lightboxPrev = document.querySelector(".lightbox-nav-prev");
+  const lightboxNext = document.querySelector(".lightbox-nav-next");
+  const galleryViewAll = document.querySelector(".gallery-view-all");
+  const navIsOpen = siteHeader?.classList.contains("is-nav-open");
+
+  if (langSwitcher) {
+    langSwitcher.setAttribute("aria-label", nextLang === "el" ? "Επιλογή γλώσσας" : "Language switcher");
+  }
+
+  if (navToggle) {
+    navToggle.setAttribute(
+      "aria-label",
+      nextLang === "el"
+        ? (navIsOpen ? "Κλείσιμο πλοήγησης" : "Άνοιγμα πλοήγησης")
+        : (navIsOpen ? "Close navigation" : "Open navigation")
+    );
+  }
+
+  if (lightbox) {
+    lightbox.setAttribute("aria-label", nextLang === "el" ? "Προβολή φωτογραφιών" : "Photo viewer");
+  }
+
+  if (lightboxClose) {
+    lightboxClose.setAttribute("aria-label", nextLang === "el" ? "Κλείσιμο προβολής" : "Close viewer");
+  }
+
+  if (lightboxPrev) {
+    lightboxPrev.setAttribute("aria-label", nextLang === "el" ? "Προηγούμενη φωτογραφία" : "Previous photo");
+  }
+
+  if (lightboxNext) {
+    lightboxNext.setAttribute("aria-label", nextLang === "el" ? "Επόμενη φωτογραφία" : "Next photo");
+  }
+
+  if (galleryViewAll) {
+    galleryViewAll.setAttribute("aria-label", nextLang === "el" ? "Δείτε όλες τις φωτογραφίες" : "View all photos");
+  }
+}
+
+function setLang(lang, options = {}) {
+  const nextLang = getSupportedLang(lang);
+  document.documentElement.lang = nextLang;
 
   document.querySelectorAll(".lang-switcher button").forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.lang === lang);
+    const isActive = button.dataset.lang === nextLang;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
   });
+
+  if (options.persist !== false) {
+    try {
+      window.localStorage.setItem(LANG_STORAGE_KEY, nextLang);
+    } catch (error) {
+      // Ignore storage failures and keep the selected language only in-memory.
+    }
+  }
+
+  if (options.syncUrl) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("lang", nextLang);
+    window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+  }
+
+  updateLocalizedLabels(nextLang);
+}
+
+function trackEvent(eventName, detail = {}) {
+  const payload = {
+    event: eventName,
+    lang: getSupportedLang(document.documentElement.lang),
+    ...detail
+  };
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(payload);
+  document.dispatchEvent(new CustomEvent("site:analytics", { detail: payload }));
 }
 
 async function updateGorgeTemperature() {
@@ -39,14 +122,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const siteHeader = document.querySelector(".site-header");
   const navToggle = document.querySelector(".nav-toggle");
   const gallery = document.querySelector(".gallery");
+  const galleryOpenTriggers = Array.from(document.querySelectorAll("[data-lightbox-open]"));
+  const gallerySourceNodes = Array.from(document.querySelectorAll(".gallery-lightbox-sources [data-lightbox-src]"));
+  const trackedElements = Array.from(document.querySelectorAll("[data-track]"));
+  const reducedMotionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
   const lightbox = document.querySelector("#gallery-lightbox");
   const lightboxImage = document.querySelector(".lightbox-image");
+  const lightboxStatus = document.querySelector(".lightbox-status");
   const lightboxClose = document.querySelector(".lightbox-close");
   const lightboxPrev = document.querySelector(".lightbox-nav-prev");
   const lightboxNext = document.querySelector(".lightbox-nav-next");
   const drawerLinks = Array.from(document.querySelectorAll(".route-more[data-drawer-target]"));
   let galleryImages = [];
   let currentImageIndex = -1;
+  let lastFocusedElement = null;
 
   const closeMobileNav = () => {
     if (!siteHeader || !navToggle) {
@@ -55,12 +144,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     siteHeader.classList.remove("is-nav-open");
     navToggle.setAttribute("aria-expanded", "false");
+    updateLocalizedLabels(document.documentElement.lang);
   };
 
   if (siteHeader && navToggle) {
     navToggle.addEventListener("click", () => {
       const isOpen = siteHeader.classList.toggle("is-nav-open");
       navToggle.setAttribute("aria-expanded", String(isOpen));
+      updateLocalizedLabels(document.documentElement.lang);
     });
 
     document.querySelectorAll(".site-header nav a").forEach((link) => {
@@ -198,9 +289,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".lang-switcher button").forEach((button) => {
     button.addEventListener("click", () => {
-      setLang(button.dataset.lang);
+      trackEvent("language_change", { target: button.dataset.lang || "el" });
+      setLang(button.dataset.lang, { syncUrl: true });
     });
   });
+
+  trackedElements.forEach((element) => {
+    element.addEventListener("click", () => {
+      trackEvent("ui_click", {
+        target: element.dataset.track || "unknown",
+        href: element.getAttribute("href") || "",
+        component: element.className || element.tagName.toLowerCase()
+      });
+    });
+  });
+
+  const updateLightboxStatus = () => {
+    if (!lightboxStatus || currentImageIndex === -1 || !galleryImages.length) {
+      return;
+    }
+
+    const lang = getSupportedLang(document.documentElement.lang);
+    const currentLabel = currentImageIndex + 1;
+    const totalLabel = galleryImages.length;
+
+    lightboxStatus.textContent = `${currentLabel} / ${totalLabel}`;
+    lightboxStatus.setAttribute(
+      "aria-label",
+      lang === "el"
+        ? `Φωτογραφία ${currentLabel} από ${totalLabel}`
+        : `Photo ${currentLabel} of ${totalLabel}`
+    );
+  };
+
+  const getLightboxFocusableElements = () => {
+    if (!lightbox) {
+      return [];
+    }
+
+    return Array.from(
+      lightbox.querySelectorAll("button:not([disabled]), [href], [tabindex]:not([tabindex='-1'])")
+    ).filter((element) => !element.hasAttribute("hidden"));
+  };
 
   const closeLightbox = () => {
     if (!lightbox || !lightboxImage) {
@@ -211,8 +341,18 @@ document.addEventListener("DOMContentLoaded", () => {
     lightbox.setAttribute("aria-hidden", "true");
     lightboxImage.src = "";
     lightboxImage.alt = "";
+    if (lightboxStatus) {
+      lightboxStatus.textContent = "";
+      lightboxStatus.removeAttribute("aria-label");
+    }
     currentImageIndex = -1;
     document.body.style.overflow = "";
+
+    if (lastFocusedElement instanceof HTMLElement) {
+      lastFocusedElement.focus();
+    }
+
+    lastFocusedElement = null;
   };
 
   const showLightboxImage = (nextIndex) => {
@@ -226,23 +366,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
     lightboxImage.src = selectedImage.src;
     lightboxImage.alt = selectedImage.alt;
+    updateLightboxStatus();
   };
 
-  if (gallery && lightbox && lightboxImage && lightboxClose && lightboxPrev && lightboxNext) {
-    galleryImages = Array.from(gallery.querySelectorAll("img"));
+  const openLightboxAt = (imageIndex, source = "gallery") => {
+    if (!lightbox || !galleryImages.length) {
+      return;
+    }
 
-    gallery.addEventListener("click", (event) => {
-      const image = event.target.closest("img");
+    lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    showLightboxImage(imageIndex);
+    lightbox.hidden = false;
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    trackEvent("gallery_open", { source, index: imageIndex + 1 });
 
-      if (!image) {
-        return;
-      }
+    window.requestAnimationFrame(() => {
+      lightboxClose?.focus();
+    });
+  };
 
-      const imageIndex = galleryImages.indexOf(image);
-      showLightboxImage(imageIndex);
-      lightbox.hidden = false;
-      lightbox.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
+  if (lightbox && lightboxImage && lightboxClose && lightboxPrev && lightboxNext) {
+    galleryImages = gallerySourceNodes.map((node) => ({
+      src: node.dataset.lightboxSrc,
+      alt: node.dataset.lightboxAlt || ""
+    })).filter((image) => image.src);
+
+    if (gallery) {
+      gallery.addEventListener("click", (event) => {
+        const trigger = event.target.closest("[data-lightbox-index]");
+
+        if (!trigger) {
+          return;
+        }
+
+        const imageIndex = Number.parseInt(trigger.dataset.lightboxIndex || "0", 10);
+
+        if (Number.isNaN(imageIndex)) {
+          return;
+        }
+
+        openLightboxAt(imageIndex, "gallery_card");
+      });
+    }
+
+    galleryOpenTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const imageIndex = Number.parseInt(trigger.dataset.lightboxOpen || "0", 10);
+
+        if (Number.isNaN(imageIndex)) {
+          return;
+        }
+
+        openLightboxAt(imageIndex, trigger.dataset.track || "gallery_trigger");
+      });
     });
 
     lightboxClose.addEventListener("click", closeLightbox);
@@ -271,7 +448,31 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (event.key === "Escape") {
+        event.preventDefault();
         closeLightbox();
+        return;
+      }
+
+      if (event.key === "Tab") {
+        const focusableElements = getLightboxFocusableElements();
+
+        if (!focusableElements.length) {
+          return;
+        }
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+        const activeElement = document.activeElement;
+
+        if (event.shiftKey && (activeElement === firstElement || !lightbox.contains(activeElement))) {
+          event.preventDefault();
+          lastElement.focus();
+        } else if (!event.shiftKey && activeElement === lastElement) {
+          event.preventDefault();
+          firstElement.focus();
+        }
+
+        return;
       }
 
       if (event.key === "ArrowLeft" && currentImageIndex !== -1) {
@@ -301,9 +502,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
         event.preventDefault();
         targetDrawer.open = true;
-        targetDrawer.scrollIntoView({ behavior: "smooth", block: "start" });
+        trackEvent("drawer_open", { target: targetId });
+        targetDrawer.scrollIntoView({
+          behavior: reducedMotionPreference.matches ? "auto" : "smooth",
+          block: "start"
+        });
       });
     });
+  }
+
+  const lazyScrollPanels = Array.from(document.querySelectorAll(".scroll-panel[data-panel-image]"));
+
+  if (lazyScrollPanels.length) {
+    const applyPanelImage = (panel) => {
+      const panelImage = panel.dataset.panelImage;
+
+      if (!panelImage || panel.dataset.panelLoaded === "true") {
+        return;
+      }
+
+      panel.style.setProperty("--panel-image", `url('${panelImage}')`);
+      panel.dataset.panelLoaded = "true";
+    };
+
+    if ("IntersectionObserver" in window) {
+      const panelObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            applyPanelImage(entry.target);
+            observer.unobserve(entry.target);
+          });
+        },
+        {
+          rootMargin: "300px 0px"
+        }
+      );
+
+      lazyScrollPanels.forEach((panel) => {
+        panelObserver.observe(panel);
+      });
+    } else {
+      lazyScrollPanels.forEach(applyPanelImage);
+    }
   }
 
   const parallaxPanels = Array.from(document.querySelectorAll(".scroll-panel-gorge-parallax")).map((panel) => {
@@ -323,7 +567,6 @@ document.addEventListener("DOMContentLoaded", () => {
       || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
     const coarsePointer = window.matchMedia("(hover: none), (pointer: coarse)");
     const phoneLikeViewport = window.matchMedia("(max-width: 500px), (max-height: 500px)");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let rafId = 0;
 
     if (isIPadOS) {
@@ -358,7 +601,7 @@ document.addEventListener("DOMContentLoaded", () => {
         || (coarsePointer.matches && phoneLikeViewport.matches && !isIPadOS);
 
       // Keep parallax enabled only on desktop-class devices.
-      return !isIPhoneLike && !isIPadOS;
+      return !isIPhoneLike && !isIPadOS && !reducedMotionPreference.matches;
     };
 
     const updateParallax = () => {
@@ -418,10 +661,10 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", requestParallaxUpdate);
     bindMediaChange(coarsePointer, requestParallaxUpdate);
     bindMediaChange(phoneLikeViewport, requestParallaxUpdate);
-    bindMediaChange(reducedMotion, requestParallaxUpdate);
+    bindMediaChange(reducedMotionPreference, requestParallaxUpdate);
     requestParallaxUpdate();
   }
 
-  setLang("el");
+  setLang(document.documentElement.lang || "el", { syncUrl: false });
   updateGorgeTemperature();
 });
