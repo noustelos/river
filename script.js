@@ -1,4 +1,5 @@
 const LANG_STORAGE_KEY = "vouraikos-lang";
+const CONSENT_STORAGE_KEY = "vouraikos-cookie-consent";
 
 function getSupportedLang(lang) {
   return lang === "en" ? "en" : "el";
@@ -133,9 +134,51 @@ document.addEventListener("DOMContentLoaded", () => {
   const lightboxPrev = document.querySelector(".lightbox-nav-prev");
   const lightboxNext = document.querySelector(".lightbox-nav-next");
   const drawerLinks = Array.from(document.querySelectorAll(".route-more[data-drawer-target]"));
+  const cookieBanner = document.getElementById("cookie-consent");
+  const cookieAcceptButton = document.getElementById("cookie-accept");
+  const cookieRejectButton = document.getElementById("cookie-reject");
+  const openCookieSettingsButton = document.getElementById("open-cookie-settings");
+  const obfuscatedEmailLink = document.getElementById("contact-email-link");
+  const contactForm = document.getElementById("contact-form");
+  const copyrightYear = document.getElementById("copyright-year");
+  const copyrightYearEn = document.getElementById("copyright-year-en");
   let galleryImages = [];
   let currentImageIndex = -1;
   let lastFocusedElement = null;
+
+  const setCookieConsent = (value) => {
+    try {
+      window.localStorage.setItem(CONSENT_STORAGE_KEY, value);
+    } catch (error) {
+      // Ignore storage failures for privacy-state persistence.
+    }
+  };
+
+  const getCookieConsent = () => {
+    try {
+      return window.localStorage.getItem(CONSENT_STORAGE_KEY);
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const hideCookieBanner = () => {
+    if (!cookieBanner) {
+      return;
+    }
+
+    cookieBanner.hidden = true;
+    cookieBanner.setAttribute("aria-hidden", "true");
+  };
+
+  const showCookieBanner = () => {
+    if (!cookieBanner) {
+      return;
+    }
+
+    cookieBanner.hidden = false;
+    cookieBanner.setAttribute("aria-hidden", "false");
+  };
 
   const closeMobileNav = () => {
     if (!siteHeader || !navToggle) {
@@ -509,6 +552,77 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
     });
+  }
+
+  if (cookieAcceptButton) {
+    cookieAcceptButton.addEventListener("click", () => {
+      setCookieConsent("accepted");
+      hideCookieBanner();
+    });
+  }
+
+  if (cookieRejectButton) {
+    cookieRejectButton.addEventListener("click", () => {
+      setCookieConsent("essential");
+      hideCookieBanner();
+    });
+  }
+
+  if (openCookieSettingsButton) {
+    openCookieSettingsButton.addEventListener("click", () => {
+      showCookieBanner();
+    });
+  }
+
+  if (!getCookieConsent()) {
+    showCookieBanner();
+  }
+
+  if (obfuscatedEmailLink) {
+    const user = obfuscatedEmailLink.dataset.user || "";
+    const domainName = obfuscatedEmailLink.dataset.domainName || "";
+    const domainTld = obfuscatedEmailLink.dataset.domainTld || "";
+    const email = `${user}@${domainName}.${domainTld}`;
+
+    if (user && domainName && domainTld) {
+      obfuscatedEmailLink.href = `mailto:${email}`;
+      obfuscatedEmailLink.textContent = email;
+      obfuscatedEmailLink.setAttribute("aria-label", email);
+    }
+  }
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(contactForm);
+      const honeypot = String(formData.get("company") || "").trim();
+
+      // If the hidden field is filled, silently stop to reduce bot spam.
+      if (honeypot) {
+        return;
+      }
+
+      const name = String(formData.get("name") || "").trim();
+      const message = String(formData.get("message") || "").trim();
+      const emailTarget = obfuscatedEmailLink?.getAttribute("href") || "mailto:info@noustelos.gr";
+
+      if (!name || !message) {
+        return;
+      }
+
+      const subject = encodeURIComponent(`Website contact from ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\n\nMessage:\n${message}`);
+      window.location.href = `${emailTarget}?subject=${subject}&body=${body}`;
+    });
+  }
+
+  const currentYear = new Date().getFullYear();
+  if (copyrightYear) {
+    copyrightYear.textContent = String(currentYear);
+  }
+  if (copyrightYearEn) {
+    copyrightYearEn.textContent = String(currentYear);
   }
 
   const lazyScrollPanels = Array.from(document.querySelectorAll(".scroll-panel[data-panel-image]"));
