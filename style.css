@@ -164,6 +164,10 @@ body {
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.25);
 }
 
+.cookie-consent[hidden] {
+  display: none !important;
+}
+
 .cookie-consent p {
   margin: 0;
   max-width: 760px;
