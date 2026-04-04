@@ -8,6 +8,9 @@
   <meta name="author" content="WebHostPro">
   <meta name="publisher" content="WebHostPro">
   <link rel="canonical" href="https://webhostpro.gr/docs/privacy-policy.html">
+  <link rel="alternate" hreflang="el" href="https://webhostpro.gr/docs/privacy-policy.html">
+  <link rel="alternate" hreflang="en" href="https://webhostpro.gr/docs/privacy-policy-en.html">
+  <link rel="alternate" hreflang="x-default" href="https://webhostpro.gr/docs/privacy-policy.html">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#f5f4ee">
   <meta property="og:type" content="article">
@@ -89,16 +92,37 @@
       text-underline-offset: 3px;
     }
 
-    .lang-block {
-      margin-top: 28px;
-      padding-top: 22px;
-      border-top: 1px solid var(--border);
+    .lang-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .lang-links a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .lang-links a:hover,
+    .lang-links a:focus-visible {
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
   </style>
 </head>
 <body>
   <main>
     <a class="top-link" href="../index.html">← Επιστροφή στην αρχική</a>
+    <nav class="lang-links" aria-label="Language versions">
+      <span>Γλώσσα:</span>
+      <strong>Ελληνικά</strong>
+      <span>/</span>
+      <a href="privacy-policy-en.html" lang="en">English</a>
+    </nav>
 
     <article class="panel">
       <h1>Πολιτική Απορρήτου</h1>
@@ -127,12 +151,7 @@
       <h2>6. Επικοινωνία</h2>
       <p>Για θέματα απορρήτου: info@webhostpro.gr</p>
 
-      <section class="lang-block" aria-labelledby="en-version-title">
-        <h2 id="en-version-title">Privacy Policy (English)</h2>
-        <p>Last updated: April 3, 2026</p>
-        <p>This website processes only essential visitor preferences (language and consent state in localStorage). If you use the contact form, the submitted name and message are used only to prepare an email to info@webhostpro.gr.</p>
-        <p>No advertising/profiling cookies are used. You may request access, correction, or deletion of personal data shared via contact by emailing info@webhostpro.gr.</p>
-      </section>
+      <p lang="en">For the full English version, open <a href="privacy-policy-en.html">Privacy Policy (English)</a>.</p>
     </article>
   </main>
 </body>
