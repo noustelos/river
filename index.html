@@ -132,7 +132,7 @@
       <span></span>
       <span></span>
     </button>
-    <nav id="site-nav">
+    <nav id="site-nav" aria-label="Κύρια πλοήγηση">
       <ul>
         <li><a href="#gorge"><span lang="el">Το Φαράγγι</span><span lang="en">The Gorge</span></a></li>
         <li><a href="#odontotos"><span lang="el">Ο Οδοντωτός</span><span lang="en">The Rack Railway</span></a></li>
@@ -231,7 +231,7 @@
   <section id="visit-planner" class="section section-narrow planner-section" aria-labelledby="planner-title">
     <div class="container planner-shell">
       <div class="section-heading planner-heading">
-        <p class="section-label"><span lang="el">Visit Planner</span><span lang="en">Visit Planner</span></p>
+        <p class="section-label"><span lang="el">Προγραμματισμός Επίσκεψης</span><span lang="en">Visit Planner</span></p>
         <h2 id="planner-title">
           <span lang="el">Οργάνωσε την επίσκεψή σου πριν μπεις στο φαράγγι</span>
           <span lang="en">Plan the visit before you step into the gorge</span>
@@ -550,7 +550,7 @@
       </div>
       <div class="story-media story-media-stack">
         <div class="media-frame">
-          <iframe src="https://www.youtube.com/embed/J3h8kkOAtIk" title="Vouraikos Gorge – Chelmos UNESCO Global Geopark" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          <iframe src="https://www.youtube.com/embed/J3h8kkOAtIk" title="Vouraikos Gorge – Chelmos UNESCO Global Geopark" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" width="560" height="315"></iframe>
         </div>
       </div>
     </div>
@@ -1551,7 +1551,9 @@
           src="https://www.google.com/maps?q=38.2039,22.1891&z=13&output=embed"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen>
+          allowfullscreen
+          width="800"
+          height="450">
         </iframe>
         <figcaption class="map-credits">
           <span lang="el">Χαρτογραφικά δεδομένα © Google. Με τη χρήση του χάρτη ισχύουν οι</span>
@@ -1747,6 +1749,7 @@
           <span lang="el">Η φόρμα προστατεύεται με honeypot anti-spam.</span>
           <span lang="en">This form is protected with a honeypot anti-spam field.</span>
         </p>
+        <p id="contact-form-status" class="footer-form-note" role="status" aria-live="polite" hidden></p>
       </form>
     </div>
     <div class="footer-3d-wrap">

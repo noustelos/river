@@ -67,7 +67,6 @@ body {
   font-size: 18px;
   line-height: 1.7;
   color: var(--text-main);
-  overflow-x: hidden;
   overflow-x: clip;
   background:
     radial-gradient(circle at 12% 0%, rgba(201, 169, 92, 0.14) 0%, transparent 32%),
@@ -891,6 +890,12 @@ nav a:focus-visible,
 
 .info-drawer summary::-webkit-details-marker {
   display: none;
+}
+
+.info-drawer summary:focus-visible {
+  outline: 2px solid rgba(201, 169, 92, 0.7);
+  outline-offset: 2px;
+  border-radius: var(--radius-card);
 }
 
 .info-drawer summary::after {
@@ -1719,9 +1724,15 @@ nav a:focus-visible,
   color: #1a5465;
 }
 
-.planner-anchor-link:hover,
+.planner-anchor-link:hover {
+  color: #123e50;
+}
+
 .planner-anchor-link:focus-visible {
   color: #123e50;
+  outline: 2px solid rgba(201, 169, 92, 0.7);
+  outline-offset: 3px;
+  border-radius: 3px;
 }
 
 .planner-grid {
@@ -2150,10 +2161,17 @@ nav a:focus-visible,
   }
 }
 
-.route-more:hover,
+.route-more:hover {
+  color: #17486a;
+  gap: 10px;
+}
+
 .route-more:focus-visible {
   color: #17486a;
   gap: 10px;
+  outline: 2px solid rgba(201, 169, 92, 0.7);
+  outline-offset: 3px;
+  border-radius: 3px;
 }
 
 .essentials-section {

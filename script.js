@@ -21,6 +21,12 @@ function updateLocalizedLabels(lang) {
     langSwitcher.setAttribute("aria-label", nextLang === "el" ? "Επιλογή γλώσσας" : "Language switcher");
   }
 
+  const siteNav = document.querySelector("#site-nav");
+
+  if (siteNav) {
+    siteNav.setAttribute("aria-label", nextLang === "el" ? "Κύρια πλοήγηση" : "Main navigation");
+  }
+
   if (navToggle) {
     navToggle.setAttribute(
       "aria-label",
@@ -140,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const openCookieSettingsButton = document.getElementById("open-cookie-settings");
   const obfuscatedEmailLink = document.getElementById("contact-email-link");
   const contactForm = document.getElementById("contact-form");
+  const contactFormStatus = document.getElementById("contact-form-status");
   const copyrightYear = document.getElementById("copyright-year");
   const copyrightYearEn = document.getElementById("copyright-year-en");
   let galleryImages = [];
@@ -614,6 +621,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const subject = encodeURIComponent(`Website contact from ${name}`);
       const body = encodeURIComponent(`Name: ${name}\n\nMessage:\n${message}`);
       window.location.href = `${emailTarget}?subject=${subject}&body=${body}`;
+
+      if (contactFormStatus) {
+        const lang = getSupportedLang(document.documentElement.lang);
+        contactFormStatus.textContent = lang === "el"
+          ? "Ευχαριστούμε! Το mail client άνοιξε με το μήνυμά σας."
+          : "Thank you! Your email client has opened with your message.";
+        contactFormStatus.hidden = false;
+        contactForm.reset();
+      }
     });
   }
 
@@ -688,11 +704,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const bindMediaChange = (query, handler) => {
-      if (typeof query.addEventListener === "function") {
-        query.addEventListener("change", handler);
-      } else if (typeof query.addListener === "function") {
-        query.addListener(handler);
-      }
+      query.addEventListener("change", handler);
     };
 
     const resetParallax = () => {
