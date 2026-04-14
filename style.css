@@ -527,6 +527,7 @@ nav a:focus-visible,
   border: 1px solid rgba(255, 255, 255, 0.16);
   background: rgba(9, 13, 12, 0.38);
   backdrop-filter: blur(8px);
+  border-radius: 0;
 }
 
 .hero-proof-item strong {
@@ -646,6 +647,7 @@ nav a:focus-visible,
 .time-facts article {
   padding: 12px;
   border: 1px solid rgba(20, 29, 27, 0.14);
+  border-top: 3px solid var(--gorge-green);
   background: rgba(255, 255, 255, 0.78);
   box-shadow: var(--shadow-soft);
   display: flex;
@@ -899,14 +901,19 @@ nav a:focus-visible,
 }
 
 .info-drawer summary::after {
-  content: "+";
-  font-size: 1.25rem;
-  line-height: 1;
-  color: var(--rust-iron);
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-right: 2.5px solid var(--rust-iron);
+  border-bottom: 2.5px solid var(--rust-iron);
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
 }
 
 .info-drawer[open] summary::after {
-  content: "-";
+  transform: rotate(-135deg);
 }
 
 .drawer-content {
@@ -1266,7 +1273,7 @@ nav a:focus-visible,
 }
 
 .section-label {
-  color: #111615;
+  color: var(--gorge-green);
   display: inline-block;
 }
 
@@ -1275,6 +1282,7 @@ nav a:focus-visible,
   margin-top: 14px;
   margin-bottom: 8px;
   padding: 4px 10px;
+  border-radius: 3px;
   background: #111615;
   color: var(--accent-gold);
   font-family: "Inter", sans-serif;
@@ -1414,6 +1422,7 @@ nav a:focus-visible,
   padding: 12px;
   background: rgba(248, 250, 248, 0.88);
   border: 1px solid rgba(17, 27, 24, 0.12);
+  border-top: 3px solid var(--gorge-green);
   box-shadow: var(--shadow-soft);
   border-radius: var(--radius-card);
   display: flex;
@@ -1629,8 +1638,19 @@ nav a:focus-visible,
   font-size: clamp(2rem, 3vw, 32px);
   line-height: 1.4;
   font-family: "Noto Serif", serif;
+  font-style: italic;
   text-align: left;
   color: #fff;
+}
+
+.scroll-panel-quote .scroll-panel-content::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--accent-gold);
+  margin-bottom: 18px;
+  opacity: 0.82;
 }
 
 .alt-tone {
@@ -1691,10 +1711,9 @@ nav a:focus-visible,
   border: 1px solid rgba(26, 42, 39, 0.12);
   background: rgba(255, 255, 255, 0.74);
   font-family: "Inter", sans-serif;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   color: #23403d;
 }
 
@@ -2777,7 +2796,7 @@ nav a:focus-visible,
 }
 
 .footer .footer-credit-link-studio {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   letter-spacing: 0.02em;
 }
 
