@@ -2,7 +2,7 @@
 <html lang="el">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Φαράγγι Βουραϊκού | UNESCO Geopark</title>
 <meta name="description" content="Ανακάλυψε το Φαράγγι Βουραϊκού με διαδρομές Ε4, Οδοντωτό, χάρτη, οδηγό επίσκεψης, συμβουλές ασφαλείας και gallery στο Γεωπάρκο UNESCO Χελμού-Βουραϊκού.">
 <meta name="author" content="WebHostPro">
@@ -25,7 +25,7 @@
 <meta name="twitter:image" content="https://webhostpro.gr/assets/photos/gallery_1/image_12.webp">
 <link rel="alternate" hreflang="el" href="https://webhostpro.gr/?lang=el">
 <link rel="alternate" hreflang="en" href="https://webhostpro.gr/?lang=en">
-<link rel="alternate" hreflang="x-default" href="https://webhostpro.gr/?lang=el">
+<link rel="alternate" hreflang="x-default" href="https://webhostpro.gr/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" as="image" href="assets/photos/gallery_1/responsive/image_12-1600.jpg" imagesrcset="assets/photos/gallery_1/responsive/image_12-960.jpg 960w, assets/photos/gallery_1/responsive/image_12-1600.jpg 1600w, assets/photos/gallery_1/image_12.webp 1920w" imagesizes="100vw" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,8 +42,8 @@
   "alternateName": "Vouraikos Gorge",
   "description": "UNESCO geopark landscape in Achaia with the Odontotos rack railway, the E4 trail, practical visitor information, and geological heritage.",
   "image": [
-    "assets/photos/gallery_1/image_12.webp",
-    "assets/photos/gallery_1/train_1.webp"
+    "https://webhostpro.gr/assets/photos/gallery_1/image_12.webp",
+    "https://webhostpro.gr/assets/photos/gallery_1/train_1.webp"
   ],
   "inLanguage": ["el", "en"],
   "isPartOf": {
@@ -151,6 +151,7 @@
     </div>
   </div>
 </header>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
 <main id="main-content">
   <section id="home" class="hero">
@@ -223,7 +224,7 @@
           <span lang="el">Θερμοκρασία Φαραγγιού</span>
           <span lang="en">Gorge Temperature</span>
         </p>
-        <strong id="hero-weather-temp" aria-live="polite">--°C</strong>
+        <strong id="hero-weather-temp" class="is-loading" aria-live="polite">--°C</strong>
       </div>
     </div>
   </section>
@@ -263,7 +264,7 @@
         </a>
       </div>
 
-      <div class="planner-grid">
+      <div class="planner-grid" id="planner-details" hidden>
         <article class="planner-card">
           <p class="planner-card-kicker"><span lang="el">Ιδανική Περίοδος</span><span lang="en">Best Window</span></p>
           <h3><span lang="el">Μάιος έως Οκτώβριος</span><span lang="en">May through October</span></h3>
@@ -285,12 +286,18 @@
           <p><span lang="el">Ο Οδοντωτός είναι η εύκολη, οικογενειακή επιλογή. Το Ε4 είναι η σωστή διαδρομή για όσους θέλουν πλήρη επαφή με το τοπίο.</span><span lang="en">The railway is the easy, family-friendly option. The E4 is the right choice if you want full contact with the landscape.</span></p>
         </article>
       </div>
+      <button class="btn btn-sm planner-toggle" type="button" id="planner-toggle" aria-controls="planner-details" aria-expanded="false">
+        <span lang="el">Περισσότερα για τον σχεδιασμό</span>
+        <span lang="en">More planning details</span>
+      </button>
 
       <div class="planner-compare" aria-label="Route comparison">
         <div class="section-heading planner-compare-heading">
           <h3><span lang="el">Γρήγορη σύγκριση εμπειριών</span><span lang="en">Quick route comparison</span></h3>
           <p><span lang="el">Δες καθαρά ποια επιλογή ταιριάζει στον χρόνο, την αντοχή και το είδος της επίσκεψης που θέλεις.</span><span lang="en">See clearly which option fits your time, stamina, and the kind of visit you want.</span></p>
         </div>
+        <div class="mobile-fold-content always-fold" data-mobile-fold="compare" data-fold-always data-fold-label-el="Σύγκρινε τις διαδρομές" data-fold-label-en="Compare routes" data-fold-close-el="Κλείσε σύγκριση" data-fold-close-en="Close comparison">
+          <div class="mobile-fold-inner">
         <div class="planner-compare-grid">
           <article class="planner-choice">
             <div class="planner-choice-head">
@@ -359,6 +366,8 @@
           </article>
         </div>
         <p class="planner-note"><span lang="el">Έλεγξε δρομολόγια, καιρό και φυσική κατάσταση πριν ξεκινήσεις. Το σωστό planning εδώ αλλάζει όλη την εμπειρία.</span><span lang="en">Check schedules, weather, and fitness level before you start. Proper planning changes the entire experience here.</span></p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -901,7 +910,7 @@
     </div>
   </section>
 
-  <section class="scroll-panel scroll-panel-quote scroll-panel-no-gradient" data-panel-image="assets/photos/gallery_1/image_7.webp">
+  <section class="scroll-panel scroll-panel-quote scroll-panel-gorge-parallax" data-parallax-speed="1" data-panel-image="assets/photos/gallery_1/image_7.webp">
     <div class="scroll-panel-stage">
       <div class="scroll-panel-media" aria-hidden="true"></div>
       <div class="container scroll-panel-content">
@@ -1112,7 +1121,7 @@
         </h2>
         <div class="routes-divider" aria-hidden="true"></div>
       </div>
-      <div class="route-grid">
+      <div class="route-grid" data-mobile-fold-grid data-fold-label-el="Δες όλες τις διαδρομές" data-fold-label-en="See all routes" data-fold-close-el="Λιγότερες" data-fold-close-en="Show less">
         <article class="route-card">
           <div class="route-image-wrap">
             <picture>
@@ -1209,6 +1218,8 @@
 
       <div class="experiences-guide">
         <h3 class="experiences-guide-title"><span lang="el">Οδηγός Πεζοπορίας</span><span lang="en">Hiking Guide</span></h3>
+        <div class="mobile-fold-content" data-mobile-fold="hiking-guide" data-fold-label-el="Δες τον οδηγό" data-fold-label-en="See the guide" data-fold-close-el="Κλείσε οδηγό" data-fold-close-en="Close guide">
+          <div class="mobile-fold-inner">
 
         <div class="section-highlights" aria-label="Hiking guide highlights">
           <article class="section-highlight-card">
@@ -1362,6 +1373,8 @@
             </ul>
           </div>
         </details>
+          </div>
+        </div>
       </div>
 
       <section class="scroll-panel scroll-panel-image-only scroll-panel-full-bleed scroll-panel-spaced-top scroll-panel-gorge-parallax" data-parallax-speed="1" data-panel-image="assets/photos/gallery_1/image_10.webp" aria-label="Vouraikos hiking full width image">
@@ -1372,6 +1385,8 @@
 
       <div class="experiences-guide">
         <h3 class="experiences-guide-title"><span lang="el">Η Εμπειρία της Πεζοπορίας</span><span lang="en">The Hiking Experience</span></h3>
+        <div class="mobile-fold-content" data-mobile-fold="hiking-exp" data-fold-label-el="Δες την εμπειρία" data-fold-label-en="See the experience" data-fold-close-el="Κλείσε" data-fold-close-en="Close">
+          <div class="mobile-fold-inner">
 
         <div class="section-highlights" aria-label="Hiking experience highlights">
           <article class="section-highlight-card">
@@ -1528,6 +1543,8 @@
             </p>
           </div>
         </details>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1668,7 +1685,11 @@
   </section>
 </main>
 
-<div class="lightbox" id="gallery-lightbox" hidden aria-hidden="true" aria-modal="true" role="dialog" aria-label="Image preview">
+<div class="gallery-credits-bridge" aria-hidden="true">
+  <p><span lang="el">Φωτογραφίες & Credits</span><span lang="en">Photos & Credits</span></p>
+</div>
+
+<div class="lightbox" id="gallery-lightbox" hidden aria-modal="true" role="dialog" aria-label="Image preview">
   <button class="lightbox-nav lightbox-nav-prev" type="button" aria-label="Previous image">‹</button>
   <button class="lightbox-close" type="button" aria-label="Close image preview">×</button>
   <p class="lightbox-status" aria-live="polite"></p>
@@ -1781,6 +1802,10 @@
     <button type="button" class="btn btn-secondary" id="cookie-reject"><span lang="el">Μόνο Απαραίτητα</span><span lang="en">Essential Only</span></button>
   </div>
 </aside>
+
+<button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top" hidden>
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 12 10 7 15 12"/></svg>
+</button>
 
 <script src="script.min.js"></script>
 

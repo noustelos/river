@@ -1,0 +1,9 @@
+{
+  "name": "vouraikos-gorge",
+  "private": true,
+  "scripts": {
+    "build:css": "npx clean-css-cli style.css -o style.min.css",
+    "build:js": "npx terser script.js -o script.min.js --compress --mangle",
+    "build": "npm run build:css && npm run build:js"
+  }
+}
