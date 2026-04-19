@@ -2190,6 +2190,8 @@ nav a:focus-visible,
   border-radius: 3px;
 }
 
+}
+
 .essentials-section {
   background: #f8faf8;
 }
@@ -3105,11 +3107,7 @@ nav a:focus-visible,
 
 }
 
-@media (max-width: 900px) {
-  img {
-    border-radius: 0 !important;
-  }
-
+@media (max-width: 1199px) {
   .site-header {
     background: rgba(247, 248, 245, 0.92);
   }
@@ -3168,6 +3166,136 @@ nav a:focus-visible,
   .lang-switcher {
     grid-area: lang;
     justify-self: end;
+  }
+}
+
+/* iPadOS hamburger — Safari uses a wider desktop-class viewport */
+.is-ipados .site-header {
+  background: rgba(247, 248, 245, 0.92);
+}
+
+.is-ipados .header-inner {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  grid-template-areas:
+    "logo toggle lang"
+    "nav nav nav";
+  align-items: center;
+  gap: 12px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.is-ipados .logo {
+  grid-area: logo;
+}
+
+.is-ipados .nav-toggle {
+  grid-area: toggle;
+  display: inline-flex;
+}
+
+.is-ipados nav {
+  grid-area: nav;
+  width: 100%;
+  display: none;
+}
+
+.is-ipados .nav-cta {
+  display: none;
+}
+
+.is-ipados .site-header.is-nav-open nav {
+  display: block;
+}
+
+.is-ipados nav ul {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 0 4px;
+}
+
+.is-ipados nav li {
+  width: 100%;
+}
+
+.is-ipados nav a {
+  display: inline-block;
+  padding: 8px 0;
+}
+
+.is-ipados .lang-switcher {
+  grid-area: lang;
+  justify-self: end;
+}
+
+/* Tablet touch fallback in case iPadOS class is not applied early enough */
+@media (min-width: 901px) and (max-width: 1366px) and (hover: none) and (pointer: coarse) {
+  html:not(.is-ipados) .site-header {
+    background: rgba(247, 248, 245, 0.92);
+  }
+
+  html:not(.is-ipados) .header-inner {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    grid-template-areas:
+      "logo toggle lang"
+      "nav nav nav";
+    align-items: center;
+    gap: 12px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  html:not(.is-ipados) .logo {
+    grid-area: logo;
+  }
+
+  html:not(.is-ipados) .nav-toggle {
+    grid-area: toggle;
+    display: inline-flex;
+  }
+
+  html:not(.is-ipados) nav {
+    grid-area: nav;
+    width: 100%;
+    display: none;
+  }
+
+  html:not(.is-ipados) .nav-cta {
+    display: none;
+  }
+
+  html:not(.is-ipados) .site-header.is-nav-open nav {
+    display: block;
+  }
+
+  html:not(.is-ipados) nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px 0 4px;
+  }
+
+  html:not(.is-ipados) nav li {
+    width: 100%;
+  }
+
+  html:not(.is-ipados) nav a {
+    display: inline-block;
+    padding: 8px 0;
+  }
+
+  html:not(.is-ipados) .lang-switcher {
+    grid-area: lang;
+    justify-self: end;
+  }
+}
+
+@media (max-width: 900px) {
+  img {
+    border-radius: 0 !important;
   }
 
   .hero {
@@ -3881,6 +4009,16 @@ nav a:focus-visible,
     line-height: 1.03;
   }
 
+  .hero-actions {
+    gap: 12px;
+  }
+
+  .btn {
+    font-size: 0.72rem;
+    padding: 10px 20px;
+    white-space: nowrap;
+  }
+
   .hero-meta {
     margin-top: 14px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3964,37 +4102,6 @@ nav a:focus-visible,
     padding: 104px 0;
   }
 
-  .header-inner {
-    gap: 12px;
-  }
-
-  .logo a {
-    font-size: 0.76rem;
-    letter-spacing: 0.09em;
-    white-space: normal;
-    max-width: 260px;
-  }
-
-  nav ul {
-    gap: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  nav a {
-    font-size: 0.72rem;
-  }
-
-  .nav-cta {
-    min-height: 40px;
-    padding: 10px 14px;
-    font-size: 0.64rem;
-  }
-
-  .lang-switcher {
-    gap: 6px;
-  }
-
   .hero {
     align-items: flex-end;
     padding-bottom: 0;
@@ -4018,6 +4125,16 @@ nav a:focus-visible,
     max-width: 700px;
     gap: 18px;
     padding-bottom: 14px;
+  }
+
+  .hero-actions {
+    gap: 12px;
+  }
+
+  .btn {
+    font-size: 0.72rem;
+    padding: 10px 20px;
+    white-space: nowrap;
   }
 
   .hero-meta {
