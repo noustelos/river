@@ -4,6 +4,7 @@ const MOBILE_BREAKPOINT = 900;
 const PARALLAX_AMPLITUDE_DEFAULT = 220;
 const PARALLAX_AMPLITUDE_CAPTION = 160;
 const PARALLAX_SHIFT_LIMIT = 180;
+const WEATHER_REQUEST_TIMEOUT_MS = 8000;
 
 function getSupportedLang(lang) {
   return lang === "en" ? "en" : "el";
@@ -109,6 +110,45 @@ function trackEvent(eventName, detail = {}) {
   document.dispatchEvent(new CustomEvent("site:analytics", { detail: payload }));
 }
 
+function bindMediaQueryChange(query, handler) {
+  if (!query || typeof handler !== "function") {
+    return;
+  }
+
+  if (typeof query.addEventListener === "function") {
+    query.addEventListener("change", handler);
+    return;
+  }
+
+  if (typeof query.addListener === "function") {
+    query.addListener(handler);
+  }
+}
+
+function supportsIntersectionObserver() {
+  return typeof window.IntersectionObserver === "function";
+}
+
+function safeScrollIntoView(element, options) {
+  if (!element || typeof element.scrollIntoView !== "function") {
+    return;
+  }
+
+  try {
+    element.scrollIntoView(options);
+  } catch (error) {
+    const rect = element.getBoundingClientRect();
+    const currentY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    const targetY = Math.max(0, rect.top + currentY - 16);
+
+    try {
+      window.scrollTo({ top: targetY, behavior: "auto" });
+    } catch (scrollError) {
+      window.scrollTo(0, targetY);
+    }
+  }
+}
+
 async function updateGorgeTemperature() {
   const temperatureEl = document.querySelector("#hero-weather-temp");
 
@@ -117,9 +157,28 @@ async function updateGorgeTemperature() {
   }
 
   const endpoint = "https://api.open-meteo.com/v1/forecast?latitude=38.2039&longitude=22.1891&current=temperature_2m&timezone=auto";
+  let timeoutId = 0;
+  let abortController = null;
 
   try {
-    const response = await fetch(endpoint, { cache: "no-store" });
+    const requestOptions = { cache: "no-store" };
+
+    if (typeof window.AbortController === "function") {
+      abortController = new AbortController();
+      requestOptions.signal = abortController.signal;
+    }
+
+    const responsePromise = fetch(endpoint, requestOptions);
+    const timeoutPromise = new Promise((_, reject) => {
+      timeoutId = window.setTimeout(() => {
+        if (abortController) {
+          abortController.abort();
+        }
+        reject(new Error("Weather request timeout"));
+      }, WEATHER_REQUEST_TIMEOUT_MS);
+    });
+
+    const response = await Promise.race([responsePromise, timeoutPromise]);
 
     if (!response.ok) {
       throw new Error("Weather request failed");
@@ -137,6 +196,10 @@ async function updateGorgeTemperature() {
   } catch (error) {
     temperatureEl.textContent = "--°C";
     temperatureEl.classList.remove("is-loading");
+  } finally {
+    if (timeoutId) {
+      window.clearTimeout(timeoutId);
+    }
   }
 }
 
@@ -148,6 +211,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const gallerySourceNodes = Array.from(document.querySelectorAll(".gallery-lightbox-sources [data-lightbox-src]"));
   const trackedElements = Array.from(document.querySelectorAll("[data-track]"));
   const reducedMotionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let isLowPowerMode = document.documentElement.classList.contains("is-low-power");
+
+  if (!isLowPowerMode) {
+    const coarsePointerQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const effectiveType = String(connection?.effectiveType || "");
+    const hasSlowConnection = Boolean(connection?.saveData) || /(^|-)2g|3g/.test(effectiveType);
+    const hasLowMemory = typeof navigator.deviceMemory === "number" && navigator.deviceMemory <= 4;
+    const hasLowCpu = typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4;
+
+    if ((coarsePointerQuery.matches && (hasSlowConnection || hasLowMemory || hasLowCpu)) || hasSlowConnection) {
+      document.documentElement.classList.add("is-low-power");
+      isLowPowerMode = true;
+    }
+  }
+
   const lightbox = document.querySelector("#gallery-lightbox");
   const lightboxImage = document.querySelector(".lightbox-image");
   const lightboxStatus = document.querySelector(".lightbox-status");
@@ -317,7 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       };
 
-      if ("IntersectionObserver" in window) {
+      if (supportsIntersectionObserver()) {
         const observer = new IntersectionObserver(
           () => {
             updateActiveFromViewport();
@@ -602,7 +681,7 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         targetDrawer.open = true;
         trackEvent("drawer_open", { target: targetId });
-        targetDrawer.scrollIntoView({
+        safeScrollIntoView(targetDrawer, {
           behavior: reducedMotionPreference.matches ? "auto" : "smooth",
           block: "start"
         });
@@ -664,6 +743,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const emailTarget = obfuscatedEmailLink?.getAttribute("href") || "mailto:info@noustelos.gr";
 
       if (!name || !message) {
+        if (contactFormStatus) {
+          const lang = getSupportedLang(document.documentElement.lang);
+          contactFormStatus.textContent = lang === "el"
+            ? "Συμπλήρωσε όνομα και μήνυμα πριν την αποστολή."
+            : "Please fill in your name and message before sending.";
+          contactFormStatus.hidden = false;
+        }
         return;
       }
 
@@ -705,7 +791,7 @@ document.addEventListener("DOMContentLoaded", () => {
       panel.dataset.panelLoaded = "true";
     };
 
-    if ("IntersectionObserver" in window) {
+    if (supportsIntersectionObserver()) {
       const panelObserver = new IntersectionObserver(
         (entries, observer) => {
           entries.forEach((entry) => {
@@ -748,10 +834,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const phoneLikeViewport = window.matchMedia("(max-width: 500px), (max-height: 500px)");
     let rafId = 0;
 
-    const bindMediaChange = (query, handler) => {
-      query.addEventListener("change", handler);
-    };
-
     const resetParallax = () => {
       parallaxPanels.forEach(({ panel, media }) => {
         const stage = media.closest(".scroll-panel-stage");
@@ -772,7 +854,7 @@ document.addEventListener("DOMContentLoaded", () => {
         || (coarsePointer.matches && phoneLikeViewport.matches && !isIPadOS);
 
       // Keep parallax enabled only on desktop-class devices.
-      return !isIPhoneLike && !isIPadOS && !reducedMotionPreference.matches;
+      return !isIPhoneLike && !isIPadOS && !reducedMotionPreference.matches && !isLowPowerMode;
     };
 
     const updateParallax = () => {
@@ -830,9 +912,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("scroll", requestParallaxUpdate, { passive: true });
     window.addEventListener("resize", requestParallaxUpdate);
-    bindMediaChange(coarsePointer, requestParallaxUpdate);
-    bindMediaChange(phoneLikeViewport, requestParallaxUpdate);
-    bindMediaChange(reducedMotionPreference, requestParallaxUpdate);
+    bindMediaQueryChange(coarsePointer, requestParallaxUpdate);
+    bindMediaQueryChange(phoneLikeViewport, requestParallaxUpdate);
+    bindMediaQueryChange(reducedMotionPreference, requestParallaxUpdate);
     requestParallaxUpdate();
   }
 
@@ -854,15 +936,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const backToTop = document.getElementById("back-to-top");
   if (backToTop) {
     const heroSection = document.querySelector(".hero");
-    if (heroSection) {
+    if (heroSection && supportsIntersectionObserver()) {
       const heroObs = new IntersectionObserver(function (entries) {
         backToTop.hidden = false;
         backToTop.classList.toggle("is-visible", !entries[0].isIntersecting);
       }, { threshold: 0 });
       heroObs.observe(heroSection);
+    } else if (heroSection) {
+      backToTop.hidden = false;
+      const updateBackToTopState = function () {
+        const threshold = Math.max(180, heroSection.offsetHeight * 0.45);
+        backToTop.classList.toggle("is-visible", window.scrollY > threshold);
+      };
+      updateBackToTopState();
+      window.addEventListener("scroll", updateBackToTopState, { passive: true });
+      window.addEventListener("resize", updateBackToTopState);
+    } else {
+      backToTop.hidden = false;
     }
     backToTop.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      try {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } catch (error) {
+        window.scrollTo(0, 0);
+      }
     });
   }
 
@@ -885,7 +982,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ── A + G: Scroll-reveal with stagger ── */
-  if (!reducedMotionPreference.matches) {
+  if (!reducedMotionPreference.matches && !isLowPowerMode) {
     const srSelectors = [
       ".section-heading",
       ".planner-card",
@@ -907,18 +1004,24 @@ document.addEventListener("DOMContentLoaded", () => {
       card.style.setProperty("--sr-d", (i * 80) + "ms");
     });
 
-    const revealObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+    if (supportsIntersectionObserver()) {
+      const revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
 
-    document.querySelectorAll(".sr").forEach(function (el) {
-      revealObserver.observe(el);
-    });
+      document.querySelectorAll(".sr").forEach(function (el) {
+        revealObserver.observe(el);
+      });
+    } else {
+      document.querySelectorAll(".sr").forEach(function (el) {
+        el.classList.add("is-visible");
+      });
+    }
   }
 
   /* ── D: Image blur-up loading ── */
@@ -956,25 +1059,35 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const statEls = document.querySelectorAll(".meta-item strong:not(#hero-weather-temp)");
-  if (statEls.length && !reducedMotionPreference.matches) {
-    const statObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) { return; }
-        const el = entry.target;
-        const raw = el.textContent.trim();
-        /* Match patterns like "20 km", "750m - 1200m" */
-        const match = raw.match(/^(\d+)\s*(km|m)/);
-        if (match) {
-          const target = parseInt(match[1], 10);
-          const suffix = " " + match[2];
-          /* Preserve the rest of the text (e.g. " - 1200m") */
-          const remaining = raw.slice(match[0].length);
-          countUp(el, target, suffix + remaining, 1200);
-        }
-        statObserver.unobserve(el);
+  if (statEls.length && !reducedMotionPreference.matches && !isLowPowerMode) {
+    const animateStatEl = function (el) {
+      const raw = el.textContent.trim();
+      /* Match patterns like "20 km", "750m - 1200m" */
+      const match = raw.match(/^(\d+)\s*(km|m)/);
+      if (!match) {
+        return;
+      }
+      const target = parseInt(match[1], 10);
+      const suffix = " " + match[2];
+      /* Preserve the rest of the text (e.g. " - 1200m") */
+      const remaining = raw.slice(match[0].length);
+      countUp(el, target, suffix + remaining, 1200);
+    };
+
+    if (supportsIntersectionObserver()) {
+      const statObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) { return; }
+          animateStatEl(entry.target);
+          statObserver.unobserve(entry.target);
+        });
+      }, { threshold: 0.5 });
+      statEls.forEach(function (el) { statObserver.observe(el); });
+    } else {
+      statEls.forEach(function (el) {
+        animateStatEl(el);
       });
-    }, { threshold: 0.5 });
-    statEls.forEach(function (el) { statObserver.observe(el); });
+    }
   }
 
   /* ── C: Drawer smooth open/close ── */
@@ -1003,7 +1116,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ── Hero scroll parallax ── */
-  if (!reducedMotionPreference.matches) {
+  if (!reducedMotionPreference.matches && !isLowPowerMode) {
     const heroEl = document.querySelector(".hero");
     const heroBackdropImg = document.querySelector(".hero-backdrop img");
     if (heroEl && heroBackdropImg) {
@@ -1036,20 +1149,26 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ── Content image reveal on scroll ── */
-  if (!reducedMotionPreference.matches) {
+  if (!reducedMotionPreference.matches && !isLowPowerMode) {
     const contentImages = document.querySelectorAll(".story-media img, .time-card img, .supporting-visual img");
     contentImages.forEach(function (img) {
       img.classList.add("img-reveal");
     });
-    const imgRevealObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          imgRevealObs.unobserve(entry.target);
-        }
+    if (supportsIntersectionObserver()) {
+      const imgRevealObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            imgRevealObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: "0px 0px -30px 0px" });
+      contentImages.forEach(function (img) { imgRevealObs.observe(img); });
+    } else {
+      contentImages.forEach(function (img) {
+        img.classList.add("is-visible");
       });
-    }, { threshold: 0.15, rootMargin: "0px 0px -30px 0px" });
-    contentImages.forEach(function (img) { imgRevealObs.observe(img); });
+    }
   }
 
   /* ── Mobile-fold: collapsible sections on mobile ── */
@@ -1075,7 +1194,7 @@ document.addEventListener("DOMContentLoaded", () => {
           : "<span lang=\"el\">" + (foldContent.dataset.foldLabelEl || "Περισσότερα") + "</span><span lang=\"en\">" + (foldContent.dataset.foldLabelEn || "More") + "</span>";
         if (!expanded) {
           var rect = (btn.closest(".planner-compare") || btn.parentNode);
-          if (rect) { rect.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
+          if (rect) { safeScrollIntoView(rect, { behavior: "smooth", block: "nearest" }); }
         }
       });
     });
@@ -1101,7 +1220,7 @@ document.addEventListener("DOMContentLoaded", () => {
           : "<span lang=\"el\">" + (foldContent.dataset.foldLabelEl || "Περισσότερα") + "</span><span lang=\"en\">" + (foldContent.dataset.foldLabelEn || "More") + "</span>";
         if (!expanded) {
           var rect = (btn.closest(".planner-compare") || btn.closest(".experiences-guide") || btn.parentNode);
-          if (rect) { rect.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
+          if (rect) { safeScrollIntoView(rect, { behavior: "smooth", block: "nearest" }); }
         }
       });
     });
@@ -1124,7 +1243,7 @@ document.addEventListener("DOMContentLoaded", () => {
           ? "<span lang=\"el\">" + (grid.dataset.foldCloseEl || "Λιγότερα") + "</span><span lang=\"en\">" + (grid.dataset.foldCloseEn || "Less") + "</span>"
           : "<span lang=\"el\">" + (grid.dataset.foldLabelEl || "Περισσότερα") + "</span><span lang=\"en\">" + (grid.dataset.foldLabelEn || "More") + "</span>";
         if (!expanded) {
-          grid.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          safeScrollIntoView(grid, { behavior: "smooth", block: "nearest" });
         }
       });
     });

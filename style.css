@@ -20,8 +20,11 @@
   --shadow-hover: 0 18px 36px rgba(14, 22, 20, 0.14);
   --shadow-deep: 0 24px 54px rgba(10, 16, 14, 0.18);
   --paper: #f7f5ef;
+  --bg-main: #f7f5ef;
   --card-bg: rgba(255, 255, 255, 0.86);
   --card-bg-subtle: rgba(255, 255, 255, 0.74);
+  --text-dark: #18211f;
+  --font-ui: "Inter", sans-serif;
   --radius-sm: 6px;
   --radius-card: 12px;
   --radius-lg: 24px;
@@ -77,6 +80,7 @@ body {
   color: var(--text-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
   overflow-x: clip;
   background:
     radial-gradient(circle at 12% 0%, rgba(201, 169, 92, 0.14) 0%, transparent 32%),
@@ -3957,6 +3961,7 @@ nav a:focus-visible,
 @media (min-width: 768px) and (max-width: 900px) {
   body {
     font-size: 16.5px;
+    overflow-x: hidden;
     overflow-x: clip;
   }
 
@@ -4462,6 +4467,12 @@ nav a:focus-visible,
   will-change: transform;
 }
 
+html.is-low-power .hero-backdrop img {
+  animation: none;
+  transform: none;
+  will-change: auto;
+}
+
 /* When scrolling, parallax overrides Ken Burns */
 .hero.has-parallax .hero-backdrop img {
   animation: none;
@@ -4510,6 +4521,21 @@ nav a:focus-visible,
 
 .scroll-panel-gorge-parallax .scroll-panel-media {
   animation: panelBreathing 12s ease-in-out infinite;
+}
+
+html.is-low-power .scroll-panel-gorge-parallax .scroll-panel-media {
+  animation: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .hero-backdrop img {
+    animation: none;
+    will-change: auto;
+  }
+
+  .scroll-panel-gorge-parallax .scroll-panel-media {
+    animation: none;
+  }
 }
 
 /* Reduced motion overrides for premium features */
