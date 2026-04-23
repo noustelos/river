@@ -4,6 +4,14 @@
   "scripts": {
     "build:css": "npx clean-css-cli style.css -o style.min.css",
     "build:js": "npx terser script.js -o script.min.js --compress --mangle",
-    "build": "npm run build:css && npm run build:js"
+    "build": "npm run build:css && npm run build:js",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:install": "playwright install",
+    "test:e2e:report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.53.0",
+    "http-server": "^14.1.1"
   }
 }
