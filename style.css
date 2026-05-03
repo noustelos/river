@@ -4519,8 +4519,19 @@ html.is-low-power .hero-backdrop img {
   100% { filter: contrast(1.12) saturate(1.18) brightness(1.04); }
 }
 
+@keyframes panelBreathingTravellersBright {
+  0%   { filter: contrast(1.12) saturate(1.18) brightness(1.35); }
+  50%  { filter: contrast(1.14) saturate(1.22) brightness(1.38); }
+  100% { filter: contrast(1.12) saturate(1.18) brightness(1.35); }
+}
+
 .scroll-panel-gorge-parallax .scroll-panel-media {
   animation: panelBreathing 12s ease-in-out infinite;
+}
+
+.scroll-panel-travellers-bright .scroll-panel-media {
+  filter: contrast(1.12) saturate(1.18) brightness(1.35);
+  animation-name: panelBreathingTravellersBright;
 }
 
 html.is-low-power .scroll-panel-gorge-parallax .scroll-panel-media {
