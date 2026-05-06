@@ -1,0 +1,73 @@
+.essentials-section {
+  background: #f8faf8;
+}
+
+.essentials-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.essentials-list {
+  margin-top: 28px;
+  display: grid;
+  gap: 16px;
+}
+
+.essential-item {
+  background: #ffffff;
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-soft);
+  border-radius: var(--radius-card);
+  padding: 16px 18px;
+}
+
+.essential-item h3 {
+  margin-bottom: 6px;
+  font-size: 1.12rem;
+  color: #193432;
+}
+
+.essential-item p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.essentials-map-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-deep);
+}
+
+.essentials-map-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.essentials-map-card figcaption {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: rgba(248, 252, 249, 0.88);
+  border: 1px solid rgba(19, 33, 29, 0.1);
+  padding: 12px 14px;
+}
+
+.essentials-map-card figcaption p {
+  margin: 0;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #46514f;
+}
+
+.essentials-map-card figcaption strong {
+  display: block;
+  margin-top: 4px;
+  font-family: "Noto Serif", serif;
+  color: #1a2e2a;
+}
